@@ -14,9 +14,6 @@
         "mikey179/vfsStream": "^1.6"
     },
     "autoload": {
-        "classmap": [
-            "resources/Mediawiki/Languages/Data"
-        ],
         "psr-4": {
             "Recca0120\\String\\": "src"
         }
