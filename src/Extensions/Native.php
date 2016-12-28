@@ -41,17 +41,37 @@ trait Native
         return $matches;
     }
 
-    public function encoding($to, $from = null)
+    public function encoding()
     {
-        return new static(mb_convert_encoding(
-            $this->string,
-            $to,
-            is_null($from) === true ? mb_internal_encoding() : $from
+        return new static(call_user_func_array(
+            'mb_convert_encoding',
+            array_merge([$this->string], func_get_args())
         ));
     }
 
     public function length()
     {
         return strlen($this->string);
+    }
+
+    public function substr()
+    {
+        return new static(call_user_func_array(
+            'substr',
+            array_merge([$this->string], func_get_args())
+        ));
+    }
+
+    public function explode()
+    {
+        return call_user_func_array(
+            'explode',
+            array_merge(func_get_args(), [$this->string])
+        );
+    }
+
+    private function callNative($method, $parameters)
+    {
+        return new static(call_user_func_array($method, $parameters));
     }
 }
