@@ -4,8 +4,7 @@ require __DIR__.'/ZhConversion.php';
 
 $class = Mediawiki\Languages\Data\ZhConversion::class;
 
-foreach (get_class_vars($class) as $key => $value)
-{
+foreach (get_class_vars($class) as $key => $value) {
     file_put_contents(
         __DIR__.'/'.$key.'.php',
         // serialize($value)
