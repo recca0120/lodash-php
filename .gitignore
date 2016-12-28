@@ -1,0 +1,12 @@
+/vendor
+/resources/assets/vendor
+/node_modules
+/build
+/src/data
+composer.phar
+composer.lock
+.php_cs.cache
+.DS_Store
+Thumbs.db
+/2src
+/2tests

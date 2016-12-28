@@ -1,0 +1,27 @@
+{
+    "name": "recca0120/string",
+    "description": "string",
+    "keywords": ["string"],
+    "license": "MIT",
+    "type": "library",
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "require-dev": {
+        "mockery/mockery": "~0.9.4",
+        "phpunit/phpunit": "~4.8|~5.4",
+        "nesbot/carbon": "~1.20",
+        "mikey179/vfsStream": "^1.6"
+    },
+    "autoload": {
+        "classmap": [
+            "resources/Mediawiki/Languages/Data"
+        ],
+        "psr-4": {
+            "Recca0120\\String\\": "src"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}
