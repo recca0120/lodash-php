@@ -70,8 +70,13 @@ trait Native
         );
     }
 
-    private function callNative($method, $parameters)
+    public function prepend($string)
     {
-        return new static(call_user_func_array($method, $parameters));
+        return new static($string.$this->string);
+    }
+
+    public function append($string)
+    {
+        return new static($this->string.$string);
     }
 }
