@@ -3,7 +3,6 @@
 namespace Recca0120\String\Extensions;
 
 use ArrayObject;
-use MediaWiki\Languages\Data\ZhConversion;
 
 class Converter
 {
@@ -13,69 +12,52 @@ class Converter
 
     private function __construct()
     {
-        $this->table = [
-            'zh-hans' => new ArrayObject(ZhConversion::$zh2Hans),
-            'zh-hant' => new ArrayObject(ZhConversion::$zh2Hant),
-            'zh-cn' => new ArrayObject(ZhConversion::$zh2CN + ZhConversion::$zh2Hans),
-            'zh-hk' => new ArrayObject(ZhConversion::$zh2HK + ZhConversion::$zh2Hant),
-            'zh-mo' => new ArrayObject(ZhConversion::$zh2HK),
-            'zh-my' => new ArrayObject(ZhConversion::$zh2CN + ZhConversion::$zh2Hans),
-            'zh-sg' => new ArrayObject(ZhConversion::$zh2CN + ZhConversion::$zh2Hans),
-            'zh-tw' => new ArrayObject(ZhConversion::$zh2TW + ZhConversion::$zh2Hant),
-            'zh' => new ArrayObject([]),
-        ];
-
-        // $this->table['zh-cn'] = new ArrayObject(
-        //     $this->table['zh-cn']->getArrayCopy() + $this->table['zh-hans']->getArrayCopy()
-        // );
-
-        // $this->table['zh-hk'] = new ArrayObject(
-        //     $this->table['zh-hk']->getArrayCopy() + $this->table['zh-hant']->getArrayCopy()
-        // );
-
-        // $this->table['zh-my'] = new ArrayObject(
-        //     $this->table['zh-my']->getArrayCopy() + $this->table['zh-hans']->getArrayCopy()
-        // );
-
-        // $this->table['zh-sg'] = new ArrayObject(
-        //     $this->table['zh-sg']->getArrayCopy() + $this->table['zh-hans']->getArrayCopy()
-        // );
-
-        // $this->table['zh-tw'] = new ArrayObject(
-        //     $this->table['zh-tw']->getArrayCopy() + $this->table['zh-hant']->getArrayCopy()
-        // );
-
         // $this->table = [
-        //     'zh-hans' => new ArrayObject(ZhConversion::$zh2Hans),
-        //     'zh-hant' => new ArrayObject(ZhConversion::$zh2Hant),
-        //     'zh-cn' => new ArrayObject(ZhConversion::$zh2CN),
-        //     'zh-hk' => new ArrayObject(ZhConversion::$zh2HK),
-        //     'zh-mo' => new ArrayObject(ZhConversion::$zh2HK),
-        //     'zh-my' => new ArrayObject(ZhConversion::$zh2CN),
-        //     'zh-sg' => new ArrayObject(ZhConversion::$zh2CN),
-        //     'zh-tw' => new ArrayObject(ZhConversion::$zh2TW),
+        //     'zh-hans' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2Hans),
+        //     'zh-hant' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2Hant),
+        //     'zh-cn' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2CN),
+        //     'zh-hk' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2HK),
+        //     'zh-mo' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2HK),
+        //     'zh-my' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2CN),
+        //     'zh-sg' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2CN),
+        //     'zh-tw' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2TW),
         //     'zh' => new ArrayObject([]),
         // ];
 
-        // $this->table['zh-cn'] = new ArrayObject(
-        //     $this->table['zh-cn']->getArrayCopy() + $this->table['zh-hans']->getArrayCopy()
-        // );
+        $path = __DIR__.'/../../resources/Mediawiki/Languages/Data/';
 
-        // $this->table['zh-hk'] = new ArrayObject(
-        //     $this->table['zh-hk']->getArrayCopy() + $this->table['zh-hant']->getArrayCopy()
-        // );
+        $this->table = [
+            'zh-hans' => new ArrayObject(require($path.'/zh2Hans.php')),
+            'zh-hant' => new ArrayObject(require($path.'/zh2Hant.php')),
+            'zh-cn' => new ArrayObject(require($path.'/zh2CN.php')),
+            'zh-hk' => new ArrayObject(require($path.'/zh2HK.php')),
+            'zh-tw' => new ArrayObject(require($path.'/zh2TW.php')),
+            'zh' => new ArrayObject([]),
+        ];
 
-        // $this->table['zh-my'] = new ArrayObject(
-        //     $this->table['zh-my']->getArrayCopy() + $this->table['zh-hans']->getArrayCopy()
-        // );
+        $this->table['zh-mo'] = $this->table['zh-hk'];
+        $this->table['zh-my'] = $this->table['zh-cn'];
+        $this->table['zh-sg'] = $this->table['zh-cn'];
 
-        // $this->table['zh-sg'] = new ArrayObject(
-        //     $this->table['zh-sg']->getArrayCopy() + $this->table['zh-hans']->getArrayCopy()
-        // );
+        $this->table['zh-cn'] = new ArrayObject(
+            $this->table['zh-cn']->getArrayCopy() + $this->table['zh-hans']->getArrayCopy()
+        );
 
-        // $this->table['zh-tw'] = new ArrayObject(
-        //     $this->table['zh-tw']->getArrayCopy() + $this->table['zh-hant']->getArrayCopy()
-        // );
+        $this->table['zh-hk'] = new ArrayObject(
+            $this->table['zh-hk']->getArrayCopy() + $this->table['zh-hant']->getArrayCopy()
+        );
+
+        $this->table['zh-my'] = new ArrayObject(
+            $this->table['zh-my']->getArrayCopy() + $this->table['zh-hans']->getArrayCopy()
+        );
+
+        $this->table['zh-sg'] = new ArrayObject(
+            $this->table['zh-sg']->getArrayCopy() + $this->table['zh-hans']->getArrayCopy()
+        );
+
+        $this->table['zh-tw'] = new ArrayObject(
+            $this->table['zh-tw']->getArrayCopy() + $this->table['zh-hant']->getArrayCopy()
+        );
     }
 
     public function convertTo($string, $variant = 'zh-tw')

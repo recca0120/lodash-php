@@ -34,7 +34,7 @@ trait Native
 
     public function match($pattern, $flags = PREG_PATTERN_ORDER, $offset = 0)
     {
-        if (!preg_match_all($pattern, $this->string, $matches, $flags, $offset)) {
+        if (! preg_match_all($pattern, $this->string, $matches, $flags, $offset)) {
             return false;
         }
 
