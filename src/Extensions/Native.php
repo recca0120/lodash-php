@@ -79,4 +79,14 @@ trait Native
     {
         return new static($this->string.$string);
     }
+
+    public function base64Encode()
+    {
+        return new static(base64_encode($this->string));
+    }
+
+    public function base64Decode()
+    {
+        return new static(base64_decode($this->string));
+    }
 }
