@@ -60,8 +60,9 @@ class Converter
         );
     }
 
-    public function convertTo($str, $variant = 'zh-tw')
+    public function convertTo($str, $variant = 'zh-TW')
     {
+        $variant = strtolower($variant);
         $arrayObject = isset($this->table[$variant]) === true ? $this->table[$variant] : $this->table[$this->default];
         $data = $arrayObject->getArrayCopy();
 
