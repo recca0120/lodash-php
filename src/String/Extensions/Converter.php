@@ -60,12 +60,12 @@ class Converter
         );
     }
 
-    public function convertTo($string, $variant = 'zh-tw')
+    public function convertTo($str, $variant = 'zh-tw')
     {
         $arrayObject = isset($this->table[$variant]) === true ? $this->table[$variant] : $this->table[$this->default];
         $data = $arrayObject->getArrayCopy();
 
-        return strtr($string, $data);
+        return strtr($str, $data);
     }
 
     public static function instance()

@@ -10,31 +10,40 @@ use Recca0120\Library\String\Extensions\ChineseNumber;
 class Str
 {
     use Native;
-    use FullCase;
     use ChineseNumber;
 
-    public $string;
+    public $str;
 
-    public function __construct($string = '')
+    public function __construct($str = '')
     {
-        $this->string = $string;
+        $this->str = $str;
     }
 
-    public function set($string)
+    public function set($str)
     {
-        $this->string = $string;
+        $this->str = $str;
 
         return $this;
     }
 
     public function convertTo($variant = 'zh-tw')
     {
-        return new static(Converter::instance()->convertTo($this->string, $variant));
+        return new static(Converter::instance()->convertTo($this->value(), $variant));
+    }
+
+    public function toHalfCase()
+    {
+        return new static((new FullCase($this->str))->toHalfCase());
+    }
+
+    public function toFullCase()
+    {
+        return new static((new FullCase($this->str))->toFullCase());
     }
 
     public function value()
     {
-        return $this->string;
+        return $this->str;
     }
 
     public function __toString()
@@ -42,8 +51,8 @@ class Str
         return $this->value();
     }
 
-    public static function make($string)
+    public static function make($str)
     {
-        return new static($string);
+        return new static($str);
     }
 }

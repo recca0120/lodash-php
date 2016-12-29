@@ -2,6 +2,7 @@
 
 use Mockery as m;
 use Recca0120\Library\Str;
+use Recca0120\Library\String\Extensions\FullCase;
 
 class FullCaseTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +19,7 @@ class FullCaseTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $map = Str::$fullCaseMap;
+        $map = FullCase::$fullCaseMap;
 
         /*
         |------------------------------------------------------------
@@ -45,7 +46,7 @@ class FullCaseTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $map = Str::$fullCaseMap;
+        $map = FullCase::$fullCaseMap;
 
         /*
         |------------------------------------------------------------

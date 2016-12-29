@@ -2,7 +2,7 @@
 
 namespace Recca0120\Library\String\Extensions;
 
-trait FullCase
+class FullCase
 {
     public static $fullCaseMap = [
         '　' => ' ',
@@ -102,13 +102,20 @@ trait FullCase
         '～' => '~',
     ];
 
+    public $str;
+
+    public function __construct($str)
+    {
+        $this->str = $str;
+    }
+
     public function toHalfCase()
     {
-        return $this->replace(static::$fullCaseMap);
+        return strtr($this->str, static::$fullCaseMap);
     }
 
     public function toFullCase()
     {
-        return $this->replace(array_flip(static::$fullCaseMap));
+        return strtr($this->str, array_flip(static::$fullCaseMap));
     }
 }

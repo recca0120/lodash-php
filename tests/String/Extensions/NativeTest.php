@@ -18,7 +18,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $string = ' foo  ';
+        $str = '  foo  ';
 
         /*
         |------------------------------------------------------------
@@ -26,7 +26,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $string = new Str($string);
+        $str = new Str($str);
 
         /*
         |------------------------------------------------------------
@@ -34,7 +34,13 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $this->assertSame('foo', (string) $string->trim());
+        $this->assertSame('foo', (string) $str->trim());
+        $this->assertSame('foo  ', (string) $str->ltrim());
+        $this->assertSame('  foo', (string) $str->rtrim());
+
+        $this->assertSame('f', (string) $str->trim()->trim('o'));
+        $this->assertSame('oo  ', (string) $str->ltrim()->ltrim('f'));
+        $this->assertSame('  f', (string) $str->rtrim()->rtrim('o'));
     }
 
     public function test_to_upper_case()
@@ -91,7 +97,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $string = 'foo';
+        $str = 'foo';
 
         /*
         |------------------------------------------------------------
@@ -105,13 +111,13 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $this->assertSame('baa', (string) (new Str($string))->replace(['f' => 'b', 'o' => 'a']));
-        $this->assertSame('bar', (string) (new Str($string))->replace('/foo/', function ($m) {
+        $this->assertSame('baa', (string) (new Str($str))->replace(['f' => 'b', 'o' => 'a']));
+        $this->assertSame('bar', (string) (new Str($str))->replace('/foo/', function ($m) {
             $this->assertSame('foo', $m[0]);
 
             return 'bar';
         }));
-        $this->assertSame('bar', (string) (new Str($string))->replace('/foo/', 'bar'));
+        $this->assertSame('bar', (string) (new Str($str))->replace('/foo/', 'bar'));
     }
 
     public function test_match()
@@ -122,7 +128,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $string = 'abcdef';
+        $str = 'abcdef';
         $pattern = '/[a-z]?/';
 
         /*
@@ -137,7 +143,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $this->assertSame([['a', 'b', 'c', 'd', 'e', 'f', '']], (new Str($string))->match($pattern));
+        $this->assertSame([['a', 'b', 'c', 'd', 'e', 'f', '']], (new Str($str))->match($pattern));
         $this->assertFalse((new Str('123'))->match('/[a-z]/'));
     }
 
@@ -149,7 +155,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $string = 'abcdef';
+        $str = 'abcdef';
 
         /*
         |------------------------------------------------------------
@@ -163,7 +169,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $this->assertSame(mb_convert_encoding($string, 'big5'), (string) (new Str($string))->encoding('big5'));
+        $this->assertSame(mb_convert_encoding($str, 'big5'), (string) (new Str($str))->encoding('big5'));
     }
 
     public function test_length()
@@ -174,7 +180,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $string = 'abcdef';
+        $str = 'abcdef';
 
         /*
         |------------------------------------------------------------
@@ -188,7 +194,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $this->assertSame(6, (new Str($string))->length());
+        $this->assertSame(6, (new Str($str))->length());
     }
 
     public function test_substr()
@@ -199,7 +205,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $string = 'abcdef';
+        $str = 'abcdef';
 
         /*
         |------------------------------------------------------------
@@ -213,7 +219,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $this->assertSame('bcd', (string) (new Str($string))->substr(1, 3));
+        $this->assertSame('bcd', (string) (new Str($str))->substr(1, 3));
     }
 
     public function test_explode()
@@ -224,7 +230,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $string = 'abcdef';
+        $str = 'abcdef';
 
         /*
         |------------------------------------------------------------
@@ -238,7 +244,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $this->assertSame(['a', 'cdef'], (new Str($string))->explode('b'));
+        $this->assertSame(['a', 'cdef'], (new Str($str))->explode('b'));
     }
 
     public function test_prepend()
@@ -249,7 +255,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $string = 'abcdef';
+        $str = 'abcdef';
 
         /*
         |------------------------------------------------------------
@@ -263,7 +269,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $this->assertSame('z'.$string, (string) (new Str($string))->prepend('z'));
+        $this->assertSame('z'.$str, (string) (new Str($str))->prepend('z'));
     }
 
     public function test_append()
@@ -274,7 +280,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $string = 'abcdef';
+        $str = 'abcdef';
 
         /*
         |------------------------------------------------------------
@@ -288,7 +294,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $this->assertSame($string.'z', (string) (new Str($string))->append('z'));
+        $this->assertSame($str.'z', (string) (new Str($str))->append('z'));
     }
 
     public function test_base64_encode()
@@ -299,7 +305,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $string = 'abcdef';
+        $str = 'abcdef';
 
         /*
         |------------------------------------------------------------
@@ -313,7 +319,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $this->assertSame(base64_encode($string), (string) (new Str($string))->base64Encode());
+        $this->assertSame(base64_encode($str), (string) (new Str($str))->base64Encode());
     }
 
     public function test_base64_decode()
@@ -324,7 +330,7 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $string = base64_encode('abcdef');
+        $str = base64_encode('abcdef');
 
         /*
         |------------------------------------------------------------
@@ -338,6 +344,6 @@ class NativeTest extends PHPUnit_Framework_TestCase
         |------------------------------------------------------------
         */
 
-        $this->assertSame('abcdef', (string) (new Str($string))->base64Decode());
+        $this->assertSame('abcdef', (string) (new Str($str))->base64Decode());
     }
 }
