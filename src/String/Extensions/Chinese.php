@@ -2,9 +2,9 @@
 
 namespace Recca0120\Library\String\Extensions;
 
-trait ChineseNumber
+class Chinese
 {
-    public static $chineseNumberUnits = [
+    public static $numberUnits = [
         '個' => 1,
         '十' => 10,
         '百' => 100,
@@ -12,14 +12,25 @@ trait ChineseNumber
         '萬' => 10000,
     ];
 
-    public function chineseToNumber()
+    protected $str;
+
+    public function __construct($str)
     {
-        $matches = $this->match('/(?P<number>[一二三四五六七八九]+)?(?P<unit>[萬千百十])?/u', PREG_SET_ORDER);
+        $this->str = $str;
+    }
+
+    public function toNumber()
+    {
+        $sum = 0;
+
+        if (!preg_match_all('/(?P<number>[一二三四五六七八九]+)?(?P<unit>[萬千百十])?/u', $this->str, $matches, PREG_SET_ORDER)) {
+            return $sum;
+        }
 
         $sum = 0;
         foreach ($matches as $token) {
             $unit = empty($token['unit']) === false ? $token['unit'] : '個';
-            $unit = static::$chineseNumberUnits[$unit];
+            $unit = static::$numberUnits[$unit];
             if (empty($token['number']) === true) {
                 $sum = ($sum === 0 ? 1 : $sum) * $unit;
 

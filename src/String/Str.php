@@ -3,14 +3,14 @@
 namespace Recca0120\Library\String;
 
 use Recca0120\Library\String\Extensions\Native;
+use Recca0120\Library\String\Extensions\Chinese;
 use Recca0120\Library\String\Extensions\FullCase;
 use Recca0120\Library\String\Extensions\Converter;
-use Recca0120\Library\String\Extensions\ChineseNumber;
+
 
 class Str
 {
     use Native;
-    use ChineseNumber;
 
     public $str;
 
@@ -39,6 +39,11 @@ class Str
     public function toFullCase()
     {
         return new static((new FullCase($this->str))->toFullCase());
+    }
+
+    public function chineseToNumber()
+    {
+        return new static((new Chinese($this->str))->toNumber());
     }
 
     public function value()
