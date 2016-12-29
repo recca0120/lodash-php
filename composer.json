@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Recca0120\\String\\": "src"
+            "Recca0120\\Library\\": "src"
         }
     },
     "config": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Recca0120\String\Extensions;
+namespace Recca0120\Library\String\Extensions;
 
 trait ChineseNumber
 {

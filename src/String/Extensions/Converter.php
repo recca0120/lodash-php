@@ -1,6 +1,6 @@
 <?php
 
-namespace Recca0120\String\Extensions;
+namespace Recca0120\Library\String\Extensions;
 
 use ArrayObject;
 
@@ -24,7 +24,7 @@ class Converter
         //     'zh' => new ArrayObject([]),
         // ];
 
-        $path = __DIR__.'/../../resources/Mediawiki/Languages/Data/';
+        $path = __DIR__.'/../../../resources/Mediawiki/Languages/Data/';
 
         $this->table = [
             'zh-hans' => new ArrayObject(require($path.'/zh2Hans.php')),

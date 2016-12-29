@@ -1,7 +1,7 @@
 <?php
 
 use Mockery as m;
-use Recca0120\String\Str;
+use Recca0120\Library\Str;
 
 class StrTest extends PHPUnit_Framework_TestCase
 {
