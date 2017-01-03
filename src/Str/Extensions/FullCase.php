@@ -1,6 +1,6 @@
 <?php
 
-namespace Recca0120\Library\Extensions\Str;
+namespace Recca0120\LoDash\Str\Extensions;
 
 class FullCase
 {
@@ -102,20 +102,20 @@ class FullCase
         '～' => '~',
     ];
 
-    public $str;
+    public $subject;
 
-    public function __construct($str)
+    public function __construct($subject)
     {
-        $this->str = $str;
+        $this->subject = $subject;
     }
 
     public function toHalfCase()
     {
-        return strtr($this->str, static::$fullCaseMap);
+        return strtr($this->subject, static::$fullCaseMap);
     }
 
     public function toFullCase()
     {
-        return strtr($this->str, array_flip(static::$fullCaseMap));
+        return strtr($this->subject, array_flip(static::$fullCaseMap));
     }
 }

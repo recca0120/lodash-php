@@ -49,11 +49,9 @@ class Collection extends ArrayObject
     {
         foreach ($this as $key => $value) {
             if ($predicate($value) === true) {
-                return is_array($value) === true ? new static($value): $value;
+                return is_array($value) === true ? new static($value) : $value;
             }
         }
-
-        return null;
     }
 
     public function findLast(callable $predicate)
@@ -63,17 +61,14 @@ class Collection extends ArrayObject
 
     public function flatMap()
     {
-
     }
 
     public function flatMapDeep()
     {
-
     }
 
     public function flatMapDepth()
     {
-
     }
 
     public function forEach(callable $iteratee)
@@ -110,7 +105,6 @@ class Collection extends ArrayObject
 
     public function invokeMap()
     {
-
     }
 
     public function keyBy($iteratee)
@@ -118,13 +112,11 @@ class Collection extends ArrayObject
         $results = [];
 
         if (is_callable($iteratee) === true) {
-            foreach ($this as $value)
-            {
+            foreach ($this as $value) {
                 $results[$iteratee($value)] = $value;
             }
         } else {
-            foreach ($this as $value)
-            {
+            foreach ($this as $value) {
                 $results[$value[$iteratee]] = $value;
             }
         }
@@ -139,12 +131,10 @@ class Collection extends ArrayObject
 
     public function orderBy()
     {
-
     }
 
     public function partition()
     {
-
     }
 
     public function filter(callable $predicate, $flag = 0)

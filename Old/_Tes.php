@@ -73,7 +73,7 @@ class _Test extends PHPUnit_Framework_TestCase
         ];
 
         $this->assertSame([1 => ['user' => 'fred', 'age' => 40, 'active' => false]], _::filter($users, function ($o) {
-            return !$o['active'];
+            return ! $o['active'];
         }));
     }
 
@@ -82,11 +82,11 @@ class _Test extends PHPUnit_Framework_TestCase
         $users = [
           ['user' => 'barney', 'age' => 36, 'active' => true],
           ['user' => 'fred',   'age' => 40, 'active' => false],
-          ['user' => 'pebbles', 'age' => 1,  'active' => true]
+          ['user' => 'pebbles', 'age' => 1,  'active' => true],
         ];
 
         $this->assertSame(['user' => 'barney', 'age' => 36, 'active' => true], _::find($users, function ($o) {
-            return !$o['age'] < 40;
+            return ! $o['age'] < 40;
         }));
     }
 
@@ -114,26 +114,26 @@ class _Test extends PHPUnit_Framework_TestCase
     public function test_key_by()
     {
         $array = [
-          [ 'dir' => 'left', 'code' => 97 ],
-          [ 'dir' => 'right', 'code' => 100 ],
+          ['dir' => 'left', 'code' => 97],
+          ['dir' => 'right', 'code' => 100],
         ];
 
         $this->assertSame([
-            'a' => [ 'dir' => 'left', 'code' => 97 ],
-            'd' => [ 'dir' => 'right', 'code' => 100 ],
-        ], _::keyBy($array, function($o) {
+            'a' => ['dir' => 'left', 'code' => 97],
+            'd' => ['dir' => 'right', 'code' => 100],
+        ], _::keyBy($array, function ($o) {
             return chr($o['code']);
         }));
 
         $this->assertSame([
-            97 => [ 'dir' => 'left', 'code' => 97 ],
-            100 => [ 'dir' => 'right', 'code' => 100 ],
+            97 => ['dir' => 'left', 'code' => 97],
+            100 => ['dir' => 'right', 'code' => 100],
         ], _::keyBy($array, 'code'));
     }
 
     public function test_map()
     {
-        $square = function($n) {
+        $square = function ($n) {
             return $n * $n;
         };
 

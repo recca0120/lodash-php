@@ -1,6 +1,6 @@
 <?php
 
-namespace Recca0120\Library\Extensions\Str;
+namespace Recca0120\LoDash\Str\Extensions;
 
 class Chinese
 {
@@ -12,18 +12,18 @@ class Chinese
         '萬' => 10000,
     ];
 
-    protected $str;
+    protected $subject;
 
-    public function __construct($str)
+    public function __construct($subject)
     {
-        $this->str = $str;
+        $this->subject = $subject;
     }
 
     public function toNumber()
     {
         $sum = 0;
 
-        if (!preg_match_all('/(?P<number>[一二三四五六七八九]+)?(?P<unit>[萬千百十])?/u', $this->str, $matches, PREG_SET_ORDER)) {
+        if ((bool) preg_match_all('/(?P<number>[一二三四五六七八九]+)?(?P<unit>[萬千百十])?/u', $this->subject, $matches, PREG_SET_ORDER) === false) {
             return $sum;
         }
 

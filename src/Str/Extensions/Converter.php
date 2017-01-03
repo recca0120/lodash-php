@@ -1,6 +1,6 @@
 <?php
 
-namespace Recca0120\Library\Extensions\Str;
+namespace Recca0120\LoDash\Str\Extensions;
 
 use ArrayObject;
 

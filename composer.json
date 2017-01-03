@@ -1,12 +1,11 @@
 {
-    "name": "recca0120/library",
+    "name": "recca0120/lodash",
     "description": "string",
     "keywords": ["string"],
     "license": "MIT",
     "type": "library",
     "require": {
-        "php": ">=5.5.9",
-        "patchwork/utf8": "^1.3"
+        "php": ">=5.5.9"
     },
     "require-dev": {
         "mockery/mockery": "~0.9.4",
@@ -16,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Recca0120\\Library\\": "src"
+            "Recca0120\\LoDash\\": "src"
         }
     },
     "config": {
