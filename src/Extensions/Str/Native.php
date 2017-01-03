@@ -1,6 +1,6 @@
 <?php
 
-namespace Recca0120\Library\String\Extensions;
+namespace Recca0120\Library\Extensions\Str;
 
 trait Native
 {
@@ -44,7 +44,7 @@ trait Native
 
     public function match($pattern, $flags = PREG_PATTERN_ORDER, $offset = 0)
     {
-        if (! preg_match_all($pattern, $this->str, $matches, $flags, $offset)) {
+        if (!preg_match_all($pattern, $this->str, $matches, $flags, $offset)) {
             return false;
         }
 

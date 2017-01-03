@@ -1,6 +1,6 @@
 <?php
 
-namespace Recca0120\Library\String\Extensions;
+namespace Recca0120\Library\Extensions\Str;
 
 class Chinese
 {
