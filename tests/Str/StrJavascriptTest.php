@@ -154,11 +154,11 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
             'people',
             'in',
             'it.',
-        ], (new Str('Oh brave new world that has such people in it.'))->split(' '));
+        ], (array) (new Str('Oh brave new world that has such people in it.'))->split(' '));
 
         $this->assertSame([
             'Oh brave new world that has such people in it.',
-        ], (new Str('Oh brave new world that has such people in it.'))->split());
+        ], (array) (new Str('Oh brave new world that has such people in it.'))->split());
 
         $this->assertSame([
             'Jan',
@@ -173,7 +173,7 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
             'Oct',
             'Nov',
             'Dec',
-        ], (new Str('Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'))->split(','));
+        ], (array) (new Str('Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'))->split(','));
     }
 
     public function test_starts_with()
