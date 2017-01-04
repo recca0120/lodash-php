@@ -4,34 +4,83 @@ namespace Recca0120\LoDash\Str;
 
 trait Javascript
 {
+    /**
+     * The static String.fromCharCode() method returns a string created by using the specified sequence of Unicode values.
+     *
+     * @return static
+     */
     public static function fromCharCode()
     {
         return new static(implode('', array_map('chr', func_get_args())));
     }
 
+    /**
+     * The static String.fromCodePoint() method returns a string created by using the specified sequence of code points.
+     *
+     * @return static
+     */
     public static function fromCodePoint()
     {
     }
 
-    // Returns the character at the specified index (position)
+    /**
+     * The charAt() method returns the specified character from a string.
+     *
+     * @param  int $index
+     *
+     * @return static
+     */
     public function charAt($index = 0)
     {
         return ($this->length() > $index) ? $this->substr($index, 1) : '';
     }
 
-    // Returns the Unicode of the character at the specified index
+    /**
+     * The charCodeAt() method returns an int between 0 and 65535
+     * representing the UTF-16 code unit at the given index
+     * (the UTF-16 code unit matches the Unicode code point for code points representable in a single UTF-16 code unit,
+     * but might also be the first code unit of a surrogate pair for code points not representable in a single UTF-16 code unit,
+     * e.g. Unicode code points > 0x10000). If you want the entire code point value, use codePointAt().
+     *
+     * @param  int $index
+     *
+     * @return int
+     */
     public function charCodeAt($index = 0)
     {
         return ord($this->charAt($index));
     }
 
-    // Joins two or more strings, and returns a new joined strings
+    /**
+     * The codePointAt() method returns a non-negative int that is the Unicode code point value.
+     *
+     * @param  int $index
+     *
+     * @return int
+     */
+    public function codePointAt($index = 0)
+    {
+    }
+
+    /**
+     * The concat() method combines the text of one or more strings and returns a new string.
+     *
+     * @return static
+     */
     public function concat()
     {
         return new static(implode('', array_merge([$this->subject], func_get_args())));
     }
 
-    // Checks whether a string ends with specified string/characters
+    /**
+     * The endsWith() method determines whether a string ends with the characters of another string,
+     * returning true or false as appropriate.
+     *
+     * @param  string $searchString
+     * @param  int $position
+     *
+     * @return bool
+     */
     public function endsWith($searchString, $position = null)
     {
         $length = $this->length();
@@ -42,7 +91,15 @@ trait Javascript
         return $lastIndex !== -1 && $lastIndex === $position;
     }
 
-    // Checks whether a string contains the specified string/characters
+    /**
+     * The includes() method determines whether one string may be found within another string,
+     * returning true or false as appropriate.
+     *
+     * @param  string  $searchString
+     * @param  int $position
+     *
+     * @return bool
+     */
     public function includes($searchString, $position = 0)
     {
         if ($position + strlen($searchString) > $this->length()) {
@@ -52,7 +109,15 @@ trait Javascript
         return $this->indexOf($searchString, $position) !== -1;
     }
 
-    // Returns the position of the first found occurrence of a specified value in a string
+    /**
+     * The indexOf() method returns the index within the calling String object of the first occurrence of the specified value,
+     * starting the search at fromIndex. Returns -1 if the value is not found.
+     *
+     * @param  string  $searchValue
+     * @param  int $fromIndex
+     *
+     * @return int
+     */
     public function indexOf($searchValue, $fromIndex = 0)
     {
         if (empty($searchValue) === true) {
@@ -64,7 +129,15 @@ trait Javascript
         return $result === false ? -1 : $result;
     }
 
-    // Returns the position of the last found occurrence of a specified value in a string
+    /**
+     * The lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value,
+     * searching backwards from fromIndex. Returns -1 if the value is not found.
+     *
+     * @param  string $searchValue
+     * @param  int $fromIndex
+     *
+     * @return int
+     */
     public function lastIndexOf($searchValue, $fromIndex = null)
     {
         if (empty($searchValue) === true) {
@@ -81,12 +154,25 @@ trait Javascript
         return $result === false ? -1 : $result;
     }
 
-    // Compares two strings in the current locale
+    /**
+     * The localeCompare() method returns a number indicating
+     * whether a reference string comes before or after or is the same as the given string in sort order.
+     *
+     * @return int
+     */
     public function localeCompare()
     {
     }
 
-    // Searches a string for a match against a regular expression, and returns the matches
+    /**
+     * The match() method retrieves the matches when matching a string against a regular expression.
+     *
+     * @param  string  $regexp
+     * @param  int  $flag
+     * @param  int $offset
+     *
+     * @return array
+     */
     public function match($regexp, $flag = PREG_PATTERN_ORDER, $offset = 0)
     {
         if ((bool) preg_match_all($regexp, $this->subject, $matches, $flag, $offset) === false) {
@@ -96,23 +182,54 @@ trait Javascript
         return $matches;
     }
 
-    public function padEnd($length, $char = ' ')
+    /**
+     * The padEnd() method pads the current string with a given string (possibly repeated)
+     * so that the resulting string reaches a given length. The padding is applied from the end (right) of the current string.
+     *
+     * @param  int $targetLength
+     * @param  string $padString
+     *
+     * @return static
+     */
+    public function padEnd($targetLength, $padString = ' ')
     {
-        return $this->pad($length, $char, STR_PAD_RIGHT);
+        return $this->pad($targetLength, $padString, STR_PAD_RIGHT);
     }
 
-    public function padStart($length, $char = ' ')
+    /**
+     * The padStart() method pads the current string with a given string (eventually repeated)
+     * so that the resulting string reaches a given length. The pad is applied from the start (left) of the current string.
+     *
+     * @param  int $targetLength
+     * @param  string $padString
+     *
+     * @return static
+     */
+    public function padStart($targetLength, $padString = ' ')
     {
-        return $this->pad($length, $char, STR_PAD_LEFT);
+        return $this->pad($targetLength, $padString, STR_PAD_LEFT);
     }
 
-    // Returns a new string with a specified number of copies of an existing string
+    /**
+     * The repeat() method constructs and returns a new string which contains the specified number of copies of the string on which it was called, concatenated together.
+     *
+     * @param  int $count
+     *
+     * @return static
+     */
     public function repeat($count)
     {
         return new static(str_repeat($this->subject, $count));
     }
 
-    // Searches a string for a specified value, or a regular expression, and returns a new string where the specified values are replaced
+    /**
+     * The replace() method returns a new string with some or all matches of a pattern replaced by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match.
+     *
+     * @param  string $regexp
+     * @param  mix $replacement
+     *
+     * @return static
+     */
     public function replace($regexp, $replacement = null)
     {
         if (is_array($regexp) === true && is_null($replacement) === true) {
