@@ -114,9 +114,9 @@ trait Javascript
      *
      * @return static
      */
-    public function filter(callable $callback, $flag = 0)
+    public function filter(callable $callback)
     {
-        return new static(array_filter($this->getArrayCopy(), $callback, $flag));
+        return new static(array_filter($this->getArrayCopy(), $callback));
     }
 
     /**
@@ -329,6 +329,11 @@ trait Javascript
         return new static($array);
     }
 
+    /**
+     * The shift() method removes the first element from an array and returns that element. This method changes the length of the array.
+     *
+     * @return mix
+     */
     public function shift()
     {
         $array = $this->getArrayCopy();
