@@ -34,7 +34,6 @@ trait Javascript
      */
     public function copyWithin($target, $start, $end)
     {
-
     }
 
     /**
@@ -62,6 +61,7 @@ trait Javascript
                 return false;
             }
         }
+
         return true;
     }
 
@@ -86,7 +86,7 @@ trait Javascript
         if (is_null($start) === true) {
             $i = is_null($end) === true ? $length : $end;
 
-            while($i--) {
+            while ($i--) {
                 $array[$i] = $value;
             }
         }
@@ -98,7 +98,7 @@ trait Javascript
         $end = is_null($end) === true ? $length : $end;
         $i = $start;
 
-        while($i!==$end) {
+        while ($i !== $end) {
             $array[$i] = $value;
             ++$i;
         }
@@ -158,7 +158,7 @@ trait Javascript
 
     /**
      * The forEach() method executes a provided function once for each array element.
-     * php < 7 not allow forEach
+     * php < 7 not allow forEach.
      *
      * @param  callable $callback
      */
@@ -206,7 +206,7 @@ trait Javascript
     }
 
     /**
-     * The join() method joins all elements of an array into a string
+     * The join() method joins all elements of an array into a string.
      *
      * @param  string $separator [description]
      *
@@ -222,7 +222,8 @@ trait Javascript
      *
      * @return \ArrayIterator
      */
-    public function keys() {
+    public function keys()
+    {
         return (new static(array_keys($this->getArrayCopy())))->entries();
     }
 
@@ -238,7 +239,7 @@ trait Javascript
     {
         $result = array_search($searchElement, array_reverse($this->getArrayCopy(), true));
 
-         return $result === false ? -1 : $result;
+        return $result === false ? -1 : $result;
         // $result = array_search($searchElement, array_reverse($this->slice($fromIndex)->getArrayCopy(), true));
 
         // return ($result === false) ? -1 : $result + $fromIndex;
@@ -300,10 +301,12 @@ trait Javascript
     }
 
     /**
-     * reduceRight
-     * @param  callable $callback     [description]
-     * @param  [type]   $initialValue [description]
-     * @return [type]                 [description]
+     * The reduceRight() method applies a function against an accumulator and each value of the array (from right-to-left) has to reduce it to a single value.
+     *
+     * @param  callable $callback
+     * @param  mix $initialValue
+     *
+     * @return mix
      */
     public function reduceRight(callable $callback, $initialValue = null)
     {
@@ -316,7 +319,7 @@ trait Javascript
     /**
      * The reverse() method reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
      *
-     * @param  boolean $preservekeys
+     * @param  bool $preservekeys
      *
      * @return static
      */
@@ -383,6 +386,7 @@ trait Javascript
                 return true;
             }
         }
+
         return false;
     }
 
@@ -396,7 +400,7 @@ trait Javascript
     public function sort(callable $compareFunction = null)
     {
         if (is_null($compareFunction) === true) {
-            $compareFunction = function($a, $b) {
+            $compareFunction = function ($a, $b) {
                 return $a > $b;
             };
         }
@@ -412,7 +416,8 @@ trait Javascript
      *
      * @return static
      */
-    public function splice() {
+    public function splice()
+    {
         $array = $this->getArrayCopy();
         call_user_func_array('array_splice', array_merge([&$array], func_get_args()));
         $this->exchangeArray($array);
@@ -421,7 +426,8 @@ trait Javascript
     }
 
     public function toLocaleString()
-    {}
+    {
+    }
 
     /**
      * The toString() method returns a string representing the specified array and its elements.

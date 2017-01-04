@@ -24,7 +24,7 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_every()
     {
-        $isBigEnough = function($element, $index, $array) {
+        $isBigEnough = function ($element, $index, $array) {
             return $element >= 10;
         };
 
@@ -44,7 +44,7 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_filter()
     {
-        $isBigEnough = function($value) {
+        $isBigEnough = function ($value) {
             return $value >= 10;
         };
 
@@ -54,25 +54,25 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_find()
     {
-        $isBigEnough = function($value) {
+        $isBigEnough = function ($value) {
             return $value >= 15;
         };
-
 
         $this->assertSame(130, (new Arr([12, 5, 8, 130, 44]))->find($isBigEnough));
     }
 
     public function test_find_index()
     {
-       $isPrime = function($element, $index, $array) {
+        $isPrime = function ($element, $index, $array) {
             $start = 2;
             while ($start <= sqrt($element)) {
                 if ($element % $start++ < 1) {
                     return false;
                 }
             }
+
             return $element > 1;
-       };
+        };
 
 
         $this->assertSame(-1, (new Arr([4, 6, 8, 12]))->findIndex($isPrime));
@@ -83,7 +83,7 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
     {
         $arr = ['a', 'b', 'c'];
         $i = 0;
-        (new Arr($arr))->each(function($value) use ($arr, &$i) {
+        (new Arr($arr))->each(function ($value) use ($arr, &$i) {
             $this->assertSame($arr[$i], $value);
             $i++;
         });
@@ -119,7 +119,7 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_keys()
     {
-        $arr = new Arr(["a", "b", "c"]);
+        $arr = new Arr(['a', 'b', 'c']);
         $iterator = $arr->keys();
 
         $this->assertSame(0, $iterator->current());
@@ -142,7 +142,8 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
         // $this->assertSame(3, $numbers->lastIndexOf(2, -1));
     }
 
-    public function test_map() {
+    public function test_map()
+    {
         $numbers = new Arr([1, 4, 9]);
         $roots = $numbers->map('sqrt');
 
@@ -150,7 +151,8 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
         $this->assertSame([1, 4, 9], (array) $numbers);
     }
 
-    public function test_pop() {
+    public function test_pop()
+    {
         $a = new Arr([1, 2, 3]);
         $a->pop();
 
@@ -168,18 +170,18 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_reduce()
     {
-        $this->assertSame(6, (new Arr([0, 1, 2, 3]))->reduce(function($a, $b) {
-          return $a + $b;
+        $this->assertSame(6, (new Arr([0, 1, 2, 3]))->reduce(function ($a, $b) {
+            return $a + $b;
         }, 0));
 
-        $this->assertSame([0, 1, 2, 3, 4, 5], (array) (new Arr([[0, 1], [2, 3], [4, 5]]))->reduce(function($a, $b) {
+        $this->assertSame([0, 1, 2, 3, 4, 5], (array) (new Arr([[0, 1], [2, 3], [4, 5]]))->reduce(function ($a, $b) {
           return (new Arr($a))->concat($b);
         }, []));
     }
 
     public function test_reduce_right()
     {
-        $this->assertSame([4, 5, 2, 3, 0, 1], (array) (new Arr([[0, 1], [2, 3], [4, 5]]))->reduceRight(function($a, $b) {
+        $this->assertSame([4, 5, 2, 3, 0, 1], (array) (new Arr([[0, 1], [2, 3], [4, 5]]))->reduceRight(function ($a, $b) {
             return (new Arr($a))->concat($b);
         }, []));
     }
@@ -203,15 +205,15 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_slice()
     {
-        $a = new Arr(["zero", "one", "two", "three"]);
+        $a = new Arr(['zero', 'one', 'two', 'three']);
         $sliced = $a->slice(1, 3);
-        $this->assertSame([ "zero", "one", "two", "three" ], (array) $a);
-        $this->assertSame(["one", "two"], (array) $sliced);
+        $this->assertSame(['zero', 'one', 'two', 'three'], (array) $a);
+        $this->assertSame(['one', 'two'], (array) $sliced);
     }
 
     public function test_some()
     {
-        $isBiggerThan10 = function($element, $index, $array) {
+        $isBiggerThan10 = function ($element, $index, $array) {
             return $element > 10;
         };
 
@@ -229,15 +231,15 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_splice()
     {
-        $myFish = new Arr(["angel", "clown", "mandarin", "surgeon"]);
-        $myFish->splice(2, 0, "drum");
+        $myFish = new Arr(['angel', 'clown', 'mandarin', 'surgeon']);
+        $myFish->splice(2, 0, 'drum');
 
-        $this->assertSame(["angel", "clown", "drum", "mandarin", "surgeon"], (array) $myFish);
+        $this->assertSame(['angel', 'clown', 'drum', 'mandarin', 'surgeon'], (array) $myFish);
     }
 
     public function test_to_string()
     {
-        $months = new Arr(["Jan", "Feb", "Mar", "Apr"]);
+        $months = new Arr(['Jan', 'Feb', 'Mar', 'Apr']);
         $this->assertSame('Jan,Feb,Mar,Apr', $months->toString());
         $this->assertSame('Jan,Feb,Mar,Apr', (string) $months);
     }
