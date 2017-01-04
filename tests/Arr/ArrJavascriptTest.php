@@ -203,6 +203,9 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_slice()
     {
-        $this->assertSame(["one", "two"], (array) (new Arr(["zero", "one", "two", "three"]))->slice(1, 3));
+        $a = new Arr(["zero", "one", "two", "three"]);
+        $sliced = $a->slice(1, 3);
+        $this->assertSame([ "zero", "one", "two", "three" ], (array) $a);
+        $this->assertSame(["one", "two"], (array) $sliced);
     }
 }
