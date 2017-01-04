@@ -3,7 +3,7 @@
 use Mockery as m;
 use Recca0120\LoDash\Str;
 
-class PHPTest extends PHPUnit_Framework_TestCase
+class StrPHPTest extends PHPUnit_Framework_TestCase
 {
     public function tearDown()
     {
