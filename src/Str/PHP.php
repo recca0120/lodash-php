@@ -36,6 +36,11 @@ trait PHP
         return new static(rtrim($this->subject, $characterMask));
     }
 
+    public function pad($length = 0, $chars = ' ', $type = STR_PAD_BOTH)
+    {
+        return str_pad($this->subject, $length, $chars, $type);
+    }
+
     public function toFullCase()
     {
         return new static((new FullCase($this->subject))->toFullCase());

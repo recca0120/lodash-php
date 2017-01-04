@@ -4,6 +4,15 @@ namespace Recca0120\LoDash\Str;
 
 trait Javascript
 {
+    public static function fromCharCode()
+    {
+        return new static(implode('', array_map('chr', func_get_args())));
+    }
+
+    public static function fromCodePoint()
+    {
+    }
+
     // Returns the character at the specified index (position)
     public function charAt($index = 0)
     {
@@ -85,6 +94,16 @@ trait Javascript
         }
 
         return $matches;
+    }
+
+    public function padEnd($length, $char = ' ')
+    {
+        return $this->pad($length, $char, STR_PAD_RIGHT);
+    }
+
+    public function padStart($length, $char = ' ')
+    {
+        return $this->pad($length, $char, STR_PAD_LEFT);
     }
 
     // Returns a new string with a specified number of copies of an existing string

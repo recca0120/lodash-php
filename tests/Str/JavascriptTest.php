@@ -10,6 +10,11 @@ class JavascriptTest extends PHPUnit_Framework_TestCase
         m::close();
     }
 
+    public function test_from_char_code()
+    {
+        $this->assertSame('ABC', (string) Str::fromCharCode(65, 66, 67));
+    }
+
     public function test_char_at()
     {
         $anyString = new Str('Brave new world');
