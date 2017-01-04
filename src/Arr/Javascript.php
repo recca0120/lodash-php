@@ -158,10 +158,11 @@ trait Javascript
 
     /**
      * The forEach() method executes a provided function once for each array element.
+     * php < 7 not allow forEach
      *
      * @param  callable $callback
      */
-    public function forEach(callable $callback)
+    public function each(callable $callback)
     {
         $array = $this->getArrayCopy();
         foreach ($array as $key => $value) {

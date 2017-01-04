@@ -79,11 +79,11 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
         $this->assertSame(2, (new Arr([4, 6, 7, 12]))->findIndex($isPrime));
     }
 
-    public function test_for_each()
+    public function test_each()
     {
         $arr = ['a', 'b', 'c'];
         $i = 0;
-        (new Arr($arr))->forEach(function($value) use ($arr, &$i) {
+        (new Arr($arr))->each(function($value) use ($arr, &$i) {
             $this->assertSame($arr[$i], $value);
             $i++;
         });
