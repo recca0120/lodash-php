@@ -208,4 +208,66 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
         $this->assertSame([ "zero", "one", "two", "three" ], (array) $a);
         $this->assertSame(["one", "two"], (array) $sliced);
     }
+
+    public function test_some()
+    {
+        $isBiggerThan10 = function($element, $index, $array) {
+            return $element > 10;
+        };
+
+        $this->assertFalse((new Arr([2, 5, 8, 1, 4]))->some($isBiggerThan10));
+        $this->assertTrue((new Arr([12, 5, 8, 1, 4]))->some($isBiggerThan10));
+    }
+
+    public function test_sort()
+    {
+        $fruit = new Arr(['cherries', 'apples', 'bananas']);
+        $fruit->sort();
+
+        $this->assertSame(['apples', 'bananas', 'cherries'], (array) $fruit);
+    }
+
+    public function test_splice()
+    {
+        $myFish = new Arr(["angel", "clown", "mandarin", "surgeon"]);
+        $myFish->splice(2, 0, "drum");
+
+        $this->assertSame(["angel", "clown", "drum", "mandarin", "surgeon"], (array) $myFish);
+    }
+
+    public function test_to_string()
+    {
+        $months = new Arr(["Jan", "Feb", "Mar", "Apr"]);
+        $this->assertSame('Jan,Feb,Mar,Apr', $months->toString());
+        $this->assertSame('Jan,Feb,Mar,Apr', (string) $months);
+    }
+
+    public function test_unshift()
+    {
+        $arr = new Arr([1, 2]);
+
+        $this->assertSame([0, 1, 2], (array) $arr->unshift(0));
+
+        $this->assertSame([-2, -1, 0, 1, 2], (array) $arr->unshift(-2, -1));
+
+        $this->assertSame([[-3], -2, -1, 0, 1, 2], (array) $arr->unshift([-3]));
+    }
+
+    public function test_values()
+    {
+        $a = new Arr(['w', 'y', 'k', 'o', 'p']);
+        $iterator = $a->values();
+
+        $this->assertSame('w', $iterator->current());
+        $iterator->next();
+        $this->assertSame('y', $iterator->current());
+        $iterator->next();
+        $this->assertSame('k', $iterator->current());
+        $iterator->next();
+        $this->assertSame('o', $iterator->current());
+        $iterator->next();
+        $this->assertSame('p', $iterator->current());
+        $iterator->next();
+        $this->assertNull($iterator->current());
+    }
 }

@@ -368,6 +368,105 @@ trait Javascript
         return new static(array_slice($array, $begin, $end));
     }
 
+    /**
+     * The some() method tests whether some element in the array passes the test implemented by the provided function.
+     *
+     * @param  callable $callback
+     *
+     * @return bool
+     */
+    public function some(callable $callback)
+    {
+        $array = $this->getArrayCopy();
+        foreach ($array as $key => $value) {
+            if ($callback($value, $key, $array) === true) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * The sort() method sorts the elements of an array in place and returns the array. The sort is not necessarily stable. The default sort order is according to string Unicode code points.
+     *
+     * @param  callable|null $compareFunction
+     *
+     * @return static
+     */
+    public function sort(callable $compareFunction = null)
+    {
+        if (is_null($compareFunction) === true) {
+            $compareFunction = function($a, $b) {
+                return $a > $b;
+            };
+        }
+        $array = $this->getArrayCopy();
+        usort($array, $compareFunction);
+        $this->exchangeArray($array);
+
+        return $this;
+    }
+
+    /**
+     * The splice() method changes the content of an array by removing existing elements and/or adding new elements.
+     *
+     * @return static
+     */
+    public function splice() {
+        $array = $this->getArrayCopy();
+        call_user_func_array('array_splice', array_merge([&$array], func_get_args()));
+        $this->exchangeArray($array);
+
+        return $this;
+    }
+
+    public function toLocaleString()
+    {}
+
+    /**
+     * The toString() method returns a string representing the specified array and its elements.
+     *
+     * @return string
+     */
+    public function toString()
+    {
+        return (string) $this->join(',');
+    }
+
+    /**
+     * The toString() method returns a string representing the specified array and its elements.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->toString();
+    }
+
+    /**
+     * The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.
+     *
+     * @return static
+     */
+    public function unshift()
+    {
+        $array = $this->getArrayCopy();
+        call_user_func_array('array_unshift', array_merge([&$array], func_get_args()));
+        $this->exchangeArray($array);
+
+        return $this;
+    }
+
+    /**
+     * The values() method returns a new Array Iterator object that contains the values for each index in the array.
+     *
+     * @return \ArrayIterator
+     */
+    public function values()
+    {
+        return (new static(array_values($this->getArrayCopy())))->entries();
+    }
+
     public function length()
     {
         return $this->count();
