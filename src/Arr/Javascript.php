@@ -473,6 +473,11 @@ trait Javascript
         return (new static(array_values($this->getArrayCopy())))->entries();
     }
 
+    /**
+     * length.
+     *
+     * @return int
+     */
     public function length()
     {
         return $this->count();

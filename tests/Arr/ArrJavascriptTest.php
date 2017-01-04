@@ -48,7 +48,6 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
             return $value >= 10;
         };
 
-
         $this->assertSame([0 => 12, 3 => 130, 4 => 44], (array) (new Arr([12, 5, 8, 130, 44]))->filter($isBigEnough));
     }
 
@@ -73,7 +72,6 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
 
             return $element > 1;
         };
-
 
         $this->assertSame(-1, (new Arr([4, 6, 8, 12]))->findIndex($isPrime));
         $this->assertSame(2, (new Arr([4, 6, 7, 12]))->findIndex($isPrime));
@@ -175,7 +173,7 @@ class ArrJavascriptTest extends PHPUnit_Framework_TestCase
         }, 0));
 
         $this->assertSame([0, 1, 2, 3, 4, 5], (array) (new Arr([[0, 1], [2, 3], [4, 5]]))->reduce(function ($a, $b) {
-          return (new Arr($a))->concat($b);
+            return (new Arr($a))->concat($b);
         }, []));
     }
 

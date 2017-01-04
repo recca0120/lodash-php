@@ -2,6 +2,8 @@
 
 namespace Recca0120\LoDash\Str;
 
+use Recca0120\LoDash\Arr;
+
 trait Javascript
 {
     /**
@@ -11,7 +13,9 @@ trait Javascript
      */
     public static function fromCharCode()
     {
-        return new static(implode('', array_map('chr', func_get_args())));
+        return (new Arr(func_get_args()))->map(function ($code) {
+            return chr($code);
+        })->join('');
     }
 
     /**
@@ -69,7 +73,7 @@ trait Javascript
      */
     public function concat()
     {
-        return new static(implode('', array_merge([$this->subject], func_get_args())));
+        return (new Arr([$this->subject]))->concat(func_get_args())->join('');
     }
 
     /**
@@ -243,7 +247,13 @@ trait Javascript
         return new static(preg_replace($regexp, $replacement, $this->subject));
     }
 
-    // Searches a string for a specified value, or regular expression, and returns the position of the match
+    /**
+     * The search() method executes a search for a match between a regular expression and this String object.
+     *
+     * @param  string $regexp
+     *
+     * @return int
+     */
     public function search($regexp)
     {
         if ((bool) preg_match($regexp, $this->subject, $match, PREG_OFFSET_CAPTURE) === false) {
@@ -253,7 +263,14 @@ trait Javascript
         return $match[0][1];
     }
 
-    // Extracts a part of a string and returns a new string
+    /**
+     * The slice() method extracts a section of a string and returns a new string.
+     *
+     * @param  int $startSlice
+     * @param  int $endSlice
+     *
+     * @return static
+     */
     public function slice($startSlice, $endSlice = null)
     {
         $length = $this->length();
@@ -269,23 +286,40 @@ trait Javascript
         return $this->substr($startSlice, $endSlice);
     }
 
-    // Splits a string into an array of substrings
+    /**
+     * The split() method splits a String object into an array of strings by separating the string into substrings.
+     *
+     * @param  string|null $separator
+     *
+     * @return Recca0120\LoDash\Arr
+     */
     public function split($separator = null)
     {
         if (is_null($separator) === true) {
             return [$this->subject];
         }
 
-        return explode($separator, $this->subject);
+        return new Arr(explode($separator, $this->subject));
     }
 
-    // Checks whether a string begins with specified characters
+    /**
+     * The startsWith() method determines whether a string begins with the characters of another string, returning true or false as appropriate.
+     *
+     * @param  string  $searchString
+     * @param  int $position
+     *
+     * @return bool
+     */
     public function startsWith($searchString, $position = 0)
     {
         return $this->substr($position, strlen($searchString))->value() === $searchString;
     }
 
-    // Extracts the characters from a string, beginning at a specified start position, and through the specified number of character
+    /**
+     * The substr() method returns the characters in a string beginning at the specified location through the specified number of characters.
+     *
+     * @return static
+     */
     public function substr()
     {
         $result = call_user_func_array('substr', array_merge([$this->subject], func_get_args()));
@@ -294,7 +328,14 @@ trait Javascript
         return new static($result);
     }
 
-    // Extracts the characters from a string, between two specified indices
+    /**
+     * The substring() method returns a subset of a string between one index and another, or through the end of the string.
+     *
+     * @param  int $indexStart
+     * @param  int $indexEnd
+     *
+     * @return static
+     */
     public function substring($indexStart, $indexEnd = null)
     {
         if (is_null($indexEnd) === true) {
@@ -307,50 +348,107 @@ trait Javascript
         return $this->slice($temp[0], $temp[1]);
     }
 
-    // Converts a string to lowercase letters, according to the host's locale
+    /**
+     * The toLocaleLowerCase() method returns the calling string value converted to lower case, according to any locale-specific case mappings.
+     *
+     * @return static
+     */
     public function toLocaleLowerCase()
     {
+        return $this->toLowerCase();
     }
 
-    // Converts a string to uppercase letters, according to the host's locale
+    /**
+     * The toLocaleUpperCase() method returns the calling string value converted to upper case, according to any locale-specific case mappings.
+     *
+     * @return static
+     */
     public function toLocaleUpperCase()
     {
+        return $this->toUpperCase();
     }
 
-    // Converts a string to lowercase letters
+    /**
+     * The toLowerCase() method returns the calling string value converted to lower case.
+     *
+     * @return static
+     */
     public function toLowerCase()
     {
         return new static(strtolower($this->subject));
     }
 
-    // Converts a string to uppercase letters
+    /**
+     * The toString() method returns a string representing the specified object.
+     *
+     * @return string
+     */
+    public function toString()
+    {
+        return $this->subject;
+    }
+
+    /**
+     * The toUpperCase() method returns the calling string value converted to upper case.
+     *
+     * @return static
+     */
     public function toUpperCase()
     {
         return new static(strtoupper($this->subject));
     }
 
-    // Removes whitespace from both ends of a string
+    /**
+     * The trim() method removes whitespace from both ends of a string. Whitespace in this context is all the whitespace characters (space, tab, no-break space, etc.) and all the line terminator characters (LF, CR, etc.).
+     *
+     * @param  string $characterMask
+     *
+     * @return static
+     */
     public function trim($characterMask = " \t\n\r\0\x0B")
     {
         return new static(trim($this->subject, $characterMask));
     }
 
+    /**
+     * The trimLeft() method removes whitespace from the left end of a string.
+     *
+     * @param  string $characterMask [description]
+     *
+     * @return static
+     */
     public function trimLeft($characterMask = " \t\n\r\0\x0B")
     {
         return $this->ltrim($characterMask);
     }
 
+    /**
+     * The trimRight() method removes whitespace from the right end of a string.
+     *
+     * @param  string $characterMask
+     *
+     * @return static
+     */
     public function trimRight($characterMask = " \t\n\r\0\x0B")
     {
         return $this->rtrim($characterMask);
     }
 
-    // Returns the primitive value of a String object
+    /**
+     * The valueOf() method returns the primitive value of a String object.
+     *
+     * @return string
+     */
     public function valueOf()
     {
         return $this->subject;
     }
 
+    /**
+     * length.
+     *
+     * @return int
+     */
     public function length()
     {
         return strlen($this->subject);
