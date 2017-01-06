@@ -310,10 +310,7 @@ trait Javascript
      */
     public function reduceRight(callable $callback, $initialValue = null)
     {
-        $array = $this->getArrayCopy();
-        $array = array_reverse($array, true);
-
-        return array_reduce($array, $callback, $initialValue);
+        return $this->reverse(true)->reduce($callback, $initialValue);
     }
 
     /**
