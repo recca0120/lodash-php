@@ -2,10 +2,10 @@
 
 namespace Recca0120\LoDash;
 
-use Recca0120\LoDash\Str\PHP;
-use Recca0120\LoDash\Str\Javascript;
+use Recca0120\LoDash\JString\PHP;
+use Recca0120\LoDash\JString\Javascript;
 
-class Str
+class JString
 {
     use Javascript;
     use PHP;

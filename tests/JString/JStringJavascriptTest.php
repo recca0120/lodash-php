@@ -1,7 +1,7 @@
 <?php
 
 use Mockery as m;
-use Recca0120\LoDash\Str;
+use Recca0120\LoDash\JString;
 
 class StrJavascriptTest extends PHPUnit_Framework_TestCase
 {
@@ -12,12 +12,12 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_from_char_code()
     {
-        $this->assertSame('ABC', (string) Str::fromCharCode(65, 66, 67));
+        $this->assertSame('ABC', (string) JString::fromCharCode(65, 66, 67));
     }
 
     public function test_char_at()
     {
-        $anyString = new Str('Brave new world');
+        $anyString = new JString('Brave new world');
         $this->assertSame('B', (string) $anyString->charAt());
         $this->assertSame('B', (string) $anyString->charAt(0));
         $this->assertSame('r', (string) $anyString->charAt(1));
@@ -29,19 +29,19 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_char_code_at()
     {
-        $anyString = new Str('ABC');
+        $anyString = new JString('ABC');
         $this->assertSame(65, $anyString->charCodeAt(0));
     }
 
     public function test_concat()
     {
-        $hello = new Str('Hello, ');
+        $hello = new JString('Hello, ');
         $this->assertSame('Hello, Kevin have a nice day.', (string) $hello->concat('Kevin', ' have a nice day.'));
     }
 
     public function test_ends_with()
     {
-        $str = new Str('To be, or not to be, that is the question.');
+        $str = new JString('To be, or not to be, that is the question.');
         $this->assertTrue($str->endsWith('question.'));
         $this->assertFalse($str->endsWith('to be'));
         $this->assertTrue($str->endsWith('to be', 19));
@@ -49,7 +49,7 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_includes()
     {
-        $str = new Str('To be, or not to be, that is the question.');
+        $str = new JString('To be, or not to be, that is the question.');
         $this->assertTrue($str->includes('To be'));
         $this->assertTrue($str->includes('To be'));
         $this->assertTrue($str->includes('question'));
@@ -60,7 +60,7 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_index_of()
     {
-        $str = new Str('Blue Whale');
+        $str = new JString('Blue Whale');
         $this->assertSame(0, $str->indexOf('Blue'));
         $this->assertSame(-1, $str->indexOf('Blute'));
         $this->assertSame(5, $str->indexOf('Whale', 0));
@@ -73,7 +73,7 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_last_index_of()
     {
-        $str = new Str('canal');
+        $str = new JString('canal');
         $this->assertSame(3, $str->lastIndexOf('a'));
         // $this->assertSame(1, $str->lastIndexOf('a', 2));
         $this->assertSame(-1, $str->lastIndexOf('a', 0));
@@ -86,14 +86,14 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_match()
     {
-        $str = new Str('For more information, see Chapter 3.4.5.1');
+        $str = new JString('For more information, see Chapter 3.4.5.1');
         $this->assertSame([
             ['see Chapter 3.4.5.1'],
             ['Chapter 3.4.5.1'],
             ['.1'],
         ], $str->match('/see (chapter \d+(\.\d)*)/i'));
 
-        $str = new Str('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
+        $str = new JString('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
         $this->assertSame([
             ['A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e'],
         ], $str->match('/[A-E]/i'));
@@ -101,36 +101,36 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_repeat()
     {
-        $this->assertSame('', (string) (new Str('abc'))->repeat(0));
-        $this->assertSame('abc', (string) (new Str('abc'))->repeat(1));
-        $this->assertSame('abcabc', (string) (new Str('abc'))->repeat(2));
-        $this->assertSame('abcabcabc', (string) (new Str('abc'))->repeat(3.5));
+        $this->assertSame('', (string) (new JString('abc'))->repeat(0));
+        $this->assertSame('abc', (string) (new JString('abc'))->repeat(1));
+        $this->assertSame('abcabc', (string) (new JString('abc'))->repeat(2));
+        $this->assertSame('abcabcabc', (string) (new JString('abc'))->repeat(3.5));
     }
 
     public function test_replace()
     {
-        $this->assertSame('abc - 12345 - #$*%', (string) (new Str('abc12345#$*%'))->replace('/([^\d]*)(\d*)([^\w]+)/', function ($m) {
+        $this->assertSame('abc - 12345 - #$*%', (string) (new JString('abc12345#$*%'))->replace('/([^\d]*)(\d*)([^\w]+)/', function ($m) {
             return implode(' - ', [$m[1], $m[2], $m[3]]);
         }));
 
-        $this->assertSame('Twas the night before Christmas...', (string) (new Str('Twas the night before Xmas...'))->replace('/xmas/i', 'Christmas'));
-        $this->assertSame('oranges are round, and oranges are juicy.', (string) (new Str('Apples are round, and apples are juicy.'))->replace('/apples/i', 'oranges'));
-        $this->assertSame('Smith, John', (string) (new Str('John Smith'))->replace('/(\w+)\s(\w+)/', '$2, $1'));
+        $this->assertSame('Twas the night before Christmas...', (string) (new JString('Twas the night before Xmas...'))->replace('/xmas/i', 'Christmas'));
+        $this->assertSame('oranges are round, and oranges are juicy.', (string) (new JString('Apples are round, and apples are juicy.'))->replace('/apples/i', 'oranges'));
+        $this->assertSame('Smith, John', (string) (new JString('John Smith'))->replace('/(\w+)\s(\w+)/', '$2, $1'));
 
-        $this->assertSame('def', (string) (new Str('abc'))->replace([
+        $this->assertSame('def', (string) (new JString('abc'))->replace([
             'abc' => 'def',
         ]));
     }
 
     public function test_search()
     {
-        $this->assertSame(22, (new Str('Twas the night before Xmas...'))->search('/xmas/i'));
-        $this->assertSame(-1, (new Str('Twas the night before Xmas...'))->search('/xmasx/i'));
+        $this->assertSame(22, (new JString('Twas the night before Xmas...'))->search('/xmas/i'));
+        $this->assertSame(-1, (new JString('Twas the night before Xmas...'))->search('/xmasx/i'));
     }
 
     public function test_slice()
     {
-        $str = new Str('The morning is upon us.');
+        $str = new JString('The morning is upon us.');
         $this->assertSame('he morn', (string) $str->slice(1, 8));
         $this->assertSame('morning is upon u', (string) $str->slice(4, -2));
         $this->assertSame('is upon us.', (string) $str->slice(12));
@@ -154,11 +154,11 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
             'people',
             'in',
             'it.',
-        ], (array) (new Str('Oh brave new world that has such people in it.'))->split(' '));
+        ], (array) (new JString('Oh brave new world that has such people in it.'))->split(' '));
 
         $this->assertSame([
             'Oh brave new world that has such people in it.',
-        ], (array) (new Str('Oh brave new world that has such people in it.'))->split());
+        ], (array) (new JString('Oh brave new world that has such people in it.'))->split());
 
         $this->assertSame([
             'Jan',
@@ -173,12 +173,12 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
             'Oct',
             'Nov',
             'Dec',
-        ], (array) (new Str('Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'))->split(','));
+        ], (array) (new JString('Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'))->split(','));
     }
 
     public function test_starts_with()
     {
-        $str = new Str('To be, or not to be, that is the question.');
+        $str = new JString('To be, or not to be, that is the question.');
         $this->assertTrue($str->startsWith('To be'));
         $this->assertFalse($str->startsWith('not to be'));
         $this->assertTrue($str->startsWith('not to be', 10));
@@ -186,7 +186,7 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_substr()
     {
-        $str = new Str('abcdefghij');
+        $str = new JString('abcdefghij');
         $this->assertSame('bc', (string) $str->substr(1, 2));
         $this->assertSame('hi', (string) $str->substr(-3, 2));
         $this->assertSame('hij', (string) $str->substr(-3));
@@ -197,7 +197,7 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_substring()
     {
-        $str = new Str('Mozilla');
+        $str = new JString('Mozilla');
         $this->assertSame('Moz', (string) $str->substring(0, 3));
         $this->assertSame('Moz', (string) $str->substring(3, 0));
 
@@ -213,31 +213,31 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
 
     public function test_to_lower_case()
     {
-        $this->assertSame('alphabet', (string) (new Str('ALPHABET'))->toLowerCase());
+        $this->assertSame('alphabet', (string) (new JString('ALPHABET'))->toLowerCase());
     }
 
     public function test_to_upper_case()
     {
-        $this->assertSame('ALPHABET', (string) (new Str('alphabet'))->toUpperCase());
+        $this->assertSame('ALPHABET', (string) (new JString('alphabet'))->toUpperCase());
     }
 
     public function test_trim()
     {
-        $this->assertSame('foo', (string) (new Str('   foo  '))->trim());
+        $this->assertSame('foo', (string) (new JString('   foo  '))->trim());
     }
 
     public function test_trim_left()
     {
-        $this->assertSame('foo  ', (string) (new Str('   foo  '))->trimLeft());
+        $this->assertSame('foo  ', (string) (new JString('   foo  '))->trimLeft());
     }
 
     public function test_trim_right()
     {
-        $this->assertSame('   foo', (string) (new Str('   foo  '))->trimRight());
+        $this->assertSame('   foo', (string) (new JString('   foo  '))->trimRight());
     }
 
     public function test_value_of()
     {
-        $this->assertSame('Hello world', (string) (new Str('Hello world'))->valueOf());
+        $this->assertSame('Hello world', (string) (new JString('Hello world'))->valueOf());
     }
 }

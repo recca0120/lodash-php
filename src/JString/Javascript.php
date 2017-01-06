@@ -1,8 +1,8 @@
 <?php
 
-namespace Recca0120\LoDash\Str;
+namespace Recca0120\LoDash\JString;
 
-use Recca0120\LoDash\Arr;
+use Recca0120\LoDash\JArray;
 
 trait Javascript
 {
@@ -13,7 +13,7 @@ trait Javascript
      */
     public static function fromCharCode()
     {
-        return (new Arr(func_get_args()))->map(function ($code) {
+        return (new JArray(func_get_args()))->map(function ($code) {
             return chr($code);
         })->join('');
     }
@@ -73,7 +73,7 @@ trait Javascript
      */
     public function concat()
     {
-        return (new Arr([$this->subject]))->concat(func_get_args())->join('');
+        return (new JArray([$this->subject]))->concat(func_get_args())->join('');
     }
 
     /**
@@ -299,7 +299,7 @@ trait Javascript
             return [$this->subject];
         }
 
-        return new Arr(explode($separator, $this->subject));
+        return new JArray(explode($separator, $this->subject));
     }
 
     /**

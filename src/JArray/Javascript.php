@@ -1,8 +1,8 @@
 <?php
 
-namespace Recca0120\LoDash\Arr;
+namespace Recca0120\LoDash\JArray;
 
-use Recca0120\LoDash\Str;
+use Recca0120\LoDash\JString;
 
 trait Javascript
 {
@@ -214,7 +214,7 @@ trait Javascript
      */
     public function join($separator = ',')
     {
-        return new Str(implode($separator, $this->getArrayCopy()));
+        return new JString(implode($separator, $this->getArrayCopy()));
     }
 
     /**

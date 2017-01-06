@@ -1,10 +1,10 @@
 <?php
 
-namespace Recca0120\LoDash\Str;
+namespace Recca0120\LoDash\JString;
 
-use Recca0120\LoDash\Str\Extensions\Chinese;
-use Recca0120\LoDash\Str\Extensions\FullCase;
-use Recca0120\LoDash\Str\Extensions\Converter;
+use Recca0120\LoDash\JString\Extensions\Chinese;
+use Recca0120\LoDash\JString\Extensions\FullCase;
+use Recca0120\LoDash\JString\Extensions\Converter;
 
 trait PHP
 {

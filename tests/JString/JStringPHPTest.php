@@ -1,9 +1,9 @@
 <?php
 
 use Mockery as m;
-use Recca0120\LoDash\Str;
+use Recca0120\LoDash\JString;
 
-class StrPHPTest extends PHPUnit_Framework_TestCase
+class JStringPHPTest extends PHPUnit_Framework_TestCase
 {
     public function tearDown()
     {
@@ -12,12 +12,12 @@ class StrPHPTest extends PHPUnit_Framework_TestCase
 
     public function test_convert_encoding()
     {
-        $this->assertSame(mb_convert_encoding('測', 'big5'), (string) (new Str('測'))->convertEncoding('big5'));
+        $this->assertSame(mb_convert_encoding('測', 'big5'), (string) (new JString('測'))->convertEncoding('big5'));
     }
 
     public function test_convert_to()
     {
-        $this->assertSame('16进位制', (string) (new Str('16進位制'))->convertTo('zh-cn'));
+        $this->assertSame('16进位制', (string) (new JString('16進位制'))->convertTo('zh-cn'));
     }
 
     public function test_explode()
@@ -33,6 +33,6 @@ class StrPHPTest extends PHPUnit_Framework_TestCase
             'people',
             'in',
             'it.',
-        ], (new Str('Oh brave new world that has such people in it.'))->explode(' '));
+        ], (new JString('Oh brave new world that has such people in it.'))->explode(' '));
     }
 }
