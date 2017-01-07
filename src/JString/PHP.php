@@ -2,12 +2,45 @@
 
 namespace Recca0120\LoDash\JString;
 
+use Recca0120\LoDash\JArray;
 use Recca0120\LoDash\JString\Extensions\Chinese;
 use Recca0120\LoDash\JString\Extensions\FullCase;
 use Recca0120\LoDash\JString\Extensions\Converter;
 
 trait PHP
 {
+    /**
+     * Quote string with slashes in a C style.
+     *
+     * @param  string $charlist
+     *
+     * @return static
+     */
+    public function addcslashes($charlist)
+    {
+        return new static(addcslashes($this->subject, $charlist));
+    }
+
+    /**
+     *  Quote string with slashes.
+     *
+     * @return static
+     */
+    public function addslashes()
+    {
+        return new static(addslashes($this->subject));
+    }
+
+    /**
+     *  Convert binary data into hexadecimal representation.
+     *
+     * @return static
+     */
+    public function bin2hex()
+    {
+        return new static(bin2hex($this->subject));
+    }
+
     public function convertEncoding()
     {
         return new static(call_user_func_array(
@@ -21,24 +54,239 @@ trait PHP
         return new static(Converter::instance()->convertTo($this->subject, $variant));
     }
 
-    public function explode($separator)
+    public function chineseToNumber()
     {
-        return explode($separator, $this->subject);
+        return (new Chinese($this->subject))->toNumber();
     }
 
+    /**
+     * Split a string by string.
+     *
+     * @param  string $delimiter
+     * @param  int $limit
+     *
+     * @return \Recca0120\LoDash\JArray
+     */
+    public function explode($delimiter, $limit = PHP_INT_MAX)
+    {
+        return new JArray(explode($delimiter, $this->subject, $limit));
+    }
+
+    /**
+     * Convert all HTML entities to their applicable characters.
+     *
+     * @param  int $flags
+     *
+     * @return static
+     */
+    public function htmlEntityDecode($flags = ENT_COMPAT | ENT_HTML401)
+    {
+        return new static(html_entity_decode($this->subject, $flags));
+    }
+
+    /**
+     * Convert all applicable characters to HTML entities.
+     *
+     * @param  int $flags
+     *
+     * @return static
+     */
+    public function htmlentities($flags = ENT_COMPAT | ENT_HTML401)
+    {
+        return new static(htmlentities($this->subject, $flags));
+    }
+
+    /**
+     * Convert special HTML entities back to characters.
+     *
+     * @param  int $flags
+     *
+     * @return static
+     */
+    public function htmlspecialcharsDecode($flags = ENT_COMPAT | ENT_HTML401)
+    {
+        return new static(htmlspecialchars_decode($this->subject), $flags);
+    }
+
+    /**
+     * Convert special characters to HTML entities.
+     *
+     * @param  int $flags
+     *
+     * @return static
+     */
+    public function htmlspecialchars($flags = ENT_COMPAT | ENT_HTML401)
+    {
+        return new static(htmlspecialchars($this->subject, $flags));
+    }
+
+    /**
+     * Make a string's first character lowercase.
+     *
+     * @return static
+     */
+    public function lcfirst()
+    {
+        return new static(lcfirst($this->subject));
+    }
+
+    /**
+     * Strip whitespace (or other characters) from the beginning of a string.
+     *
+     * @param  string $characterMask
+     *
+     * @return static
+     */
     public function ltrim($characterMask = " \t\n\r\0\x0B")
     {
         return new static(ltrim($this->subject, $characterMask));
     }
 
+    /**
+     * Calculate the md5 hash of a string.
+     *
+     * @param  bool $rawOutput
+     *
+     * @return static
+     */
+    public function md5($rawOutput = false)
+    {
+        return new static(md5($this->subject, $rawOutput));
+    }
+
+    /**
+     * Inserts HTML line breaks before all newlines in a string.
+     *
+     * @param  bool $isXHTML
+     *
+     * @return static
+     */
+    public function nl2br($isXHTML = true)
+    {
+        return new static(nl2br($this->subject, $isXHTML));
+    }
+
+    /**
+     * Parses the string into variables.
+     *
+     * @return \Recca0120\LoDash\JArray
+     */
+    public function parse()
+    {
+        $results = [];
+        parse_str($this->subject, $results);
+
+        return new JArray($results);
+    }
+
+    /**
+     * Strip whitespace (or other characters) from the end of a string.
+     *
+     * @param  string $characterMask
+     *
+     * @return static
+     */
     public function rtrim($characterMask = " \t\n\r\0\x0B")
     {
         return new static(rtrim($this->subject, $characterMask));
     }
 
+    /**
+     * Calculate the sha1 hash of a string.
+     *
+     * @return static
+     */
+    public function sha1()
+    {
+        return new static(sha1($this->subject));
+    }
+
+    /**
+     * Parses input from a string according to a format.
+     *
+     * @param  string $format
+     *
+     * @return static
+     */
+    public function sscanf($format)
+    {
+        return new JArray(sscanf($this->subject, $format));
+    }
+
+    /**
+     * Pad a string to a certain length with another string.
+     *
+     * @param  int $length
+     * @param  string  $chars
+     * @param  int  $type
+     *
+     * @return static
+     */
     public function pad($length = 0, $chars = ' ', $type = STR_PAD_BOTH)
     {
-        return str_pad($this->subject, $length, $chars, $type);
+        return new static(str_pad($this->subject, $length, $chars, $type));
+    }
+
+    /**
+     * Perform the rot13 transform on a string.
+     *
+     * @return static
+     */
+    public function rot13()
+    {
+        return new static(str_rot13($this->subject));
+    }
+
+    /**
+     * Randomly shuffles a string.
+     *
+     * @return static
+     */
+    public function shuffle()
+    {
+        return new static(str_shuffle($this->subject));
+    }
+
+    /**
+     * Strip HTML and PHP tags from a string.
+     *
+     * @param string $allowable_tags
+     *
+     * @return static
+     */
+    public function stripTags()
+    {
+        return new static(call_user_func_array('strip_tags', array_merge([$this->subject], func_get_args())));
+    }
+
+    /**
+     * Un-quote string quoted with addcslashes().
+     *
+     * @return static
+     */
+    public function stripcslashes()
+    {
+        return new static(stripcslashes($this->subject));
+    }
+
+    /**
+     * Un-quotes a quoted string.
+     *
+     * @return static
+     */
+    public function stripslashes()
+    {
+        return new static(stripslashes($this->subject));
+    }
+
+    /**
+     * Reverse a string.
+     *
+     * @return static
+     */
+    public function reverse()
+    {
+        return new static(strrev($this->subject));
     }
 
     public function toFullCase()
@@ -51,8 +299,39 @@ trait PHP
         return new static((new FullCase($this->subject))->toHalfCase());
     }
 
-    public function chineseToNumber()
+    /**
+     * Make a string's first character uppercase.
+     *
+     * @return static
+     */
+    public function ucfirst()
     {
-        return (new Chinese($this->subject))->toNumber();
+        return new static(ucfirst($this->subject));
+    }
+
+    /**
+     * Uppercase the first character of each word in a string.
+     *
+     * @param  string $delimiters
+     *
+     * @return static
+     */
+    public function ucwords($delimiters = " \t\r\n\f\v")
+    {
+        return new static(ucwords($this->subject, $delimiters));
+    }
+
+    /**
+     * Wraps a string to a given number of characters.
+     *
+     * @param  int $width
+     * @param  string  $break
+     * @param  bool $cut
+     *
+     * @return static
+     */
+    public function wordwrap($width = 75, $break = "\n", $cut = false)
+    {
+        return new static(wordwrap($this->subject, $break, $cut));
     }
 }

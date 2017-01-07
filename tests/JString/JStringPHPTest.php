@@ -33,6 +33,6 @@ class JStringPHPTest extends PHPUnit_Framework_TestCase
             'people',
             'in',
             'it.',
-        ], (new JString('Oh brave new world that has such people in it.'))->explode(' '));
+        ], (array) (new JString('Oh brave new world that has such people in it.'))->explode(' '));
     }
 }

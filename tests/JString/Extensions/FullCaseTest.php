@@ -5,6 +5,11 @@ use Recca0120\LoDash\JString\Extensions\FullCase;
 
 class JStringFullCaseTest extends PHPUnit_Framework_TestCase
 {
+    public function tearDown()
+    {
+        m::close();
+    }
+
     public function test_full_case()
     {
         $map = FullCase::$fullCaseMap;
