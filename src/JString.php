@@ -29,6 +29,15 @@ class JString
 
     public static function factory($subject = '')
     {
-        return new static($subject);
+        return new static((string) $subject);
+    }
+
+    public static function supports($object)
+    {
+        if ($object instanceof static || is_string($object) === true) {
+            return true;
+        }
+
+        return false;
     }
 }

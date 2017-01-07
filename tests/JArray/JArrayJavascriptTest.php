@@ -270,4 +270,12 @@ class JArrayJavascriptTest extends PHPUnit_Framework_TestCase
         $iterator->next();
         $this->assertNull($iterator->current());
     }
+
+    public function test_is_array()
+    {
+        $this->assertTrue(JArray::supports([]));
+        $this->assertTrue(JArray::supports(new JArray([])));
+        $this->assertFalse(JArray::supports(''));
+        $this->assertFalse(JArray::supports(new stdClass));
+    }
 }

@@ -3,7 +3,7 @@
 use Mockery as m;
 use Recca0120\LoDash\JString;
 
-class StrJavascriptTest extends PHPUnit_Framework_TestCase
+class JStringJavascriptTest extends PHPUnit_Framework_TestCase
 {
     public function tearDown()
     {
@@ -239,5 +239,13 @@ class StrJavascriptTest extends PHPUnit_Framework_TestCase
     public function test_value_of()
     {
         $this->assertSame('Hello world', (string) (new JString('Hello world'))->valueOf());
+    }
+
+    public function test_is_string()
+    {
+        $this->assertTrue(JString::supports(new JString([])));
+        $this->assertTrue(JString::supports(''));
+        $this->assertFalse(JString::supports([]));
+        $this->assertFalse(JString::supports(new stdClass));
     }
 }
