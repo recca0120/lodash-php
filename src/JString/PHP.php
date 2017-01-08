@@ -79,8 +79,10 @@ trait PHP
      *
      * @return static
      */
-    public function htmlEntityDecode($flags = ENT_COMPAT | ENT_HTML401)
+    public function htmlEntityDecode($flags = null)
     {
+        $flags = is_null($flags) === true ? ENT_COMPAT | ENT_HTML401 : $flags;
+
         return new static(html_entity_decode($this->subject, $flags));
     }
 
@@ -91,8 +93,10 @@ trait PHP
      *
      * @return static
      */
-    public function htmlentities($flags = ENT_COMPAT | ENT_HTML401)
+    public function htmlentities($flags = null)
     {
+        $flags = is_null($flags) === true ? ENT_COMPAT | ENT_HTML401 : $flags;
+
         return new static(htmlentities($this->subject, $flags));
     }
 
@@ -103,8 +107,10 @@ trait PHP
      *
      * @return static
      */
-    public function htmlspecialcharsDecode($flags = ENT_COMPAT | ENT_HTML401)
+    public function htmlspecialcharsDecode($flags = null)
     {
+        $flags = is_null($flags) === true ? ENT_COMPAT | ENT_HTML401 : $flags;
+
         return new static(htmlspecialchars_decode($this->subject), $flags);
     }
 
@@ -115,8 +121,10 @@ trait PHP
      *
      * @return static
      */
-    public function htmlspecialchars($flags = ENT_COMPAT | ENT_HTML401)
+    public function htmlspecialchars($flags = null)
     {
+        $flags = is_null($flags) === true ? ENT_COMPAT | ENT_HTML401 : $flags;
+
         return new static(htmlspecialchars($this->subject, $flags));
     }
 
