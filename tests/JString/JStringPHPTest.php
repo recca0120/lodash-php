@@ -20,6 +20,12 @@ class JStringPHPTest extends PHPUnit_Framework_TestCase
         $this->assertSame('16进位制', (string) (new JString('16進位制'))->convertTo('zh-cn'));
     }
 
+    public function test_htmlentities()
+    {
+        $flag = ENT_COMPAT | ENT_HTML401;
+        $this->assertSame(htmlentities('foo', $flag), (string) (new JString('foo'))->htmlentities($flag));
+    }
+
     public function test_explode()
     {
         $this->assertSame([

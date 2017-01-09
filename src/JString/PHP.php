@@ -41,12 +41,11 @@ trait PHP
         return new static(bin2hex($this->subject));
     }
 
-    public function convertEncoding()
+    public function convertEncoding($toEncoding)
     {
-        return new static(call_user_func_array(
-            'mb_convert_encoding',
-            array_merge([$this->subject], func_get_args())
-        ));
+        return func_num_args() === 1 ?
+            new static(mb_convert_encoding($this->subject, $toEncoding)) :
+            new static(mb_convert_encoding($this->subject, $toEncoding, func_get_arg(0)));
     }
 
     public function convertTo($variant = 'zh-tw')
@@ -67,9 +66,11 @@ trait PHP
      *
      * @return \Recca0120\LoDash\JArray
      */
-    public function explode($delimiter, $limit = PHP_INT_MAX)
+    public function explode($delimiter)
     {
-        return new JArray(explode($delimiter, $this->subject, $limit));
+        return func_num_args() === 1 ?
+            new JArray(explode($delimiter, $this->subject)) :
+            new JArray(explode($delimiter, $this->subject, func_get_arg(1)));
     }
 
     /**
@@ -79,11 +80,11 @@ trait PHP
      *
      * @return static
      */
-    public function htmlEntityDecode($flags = null)
+    public function htmlEntityDecode()
     {
-        $flags = is_null($flags) === true ? ENT_COMPAT | ENT_HTML401 : $flags;
-
-        return new static(html_entity_decode($this->subject, $flags));
+        return func_num_args() === 0 ?
+            new static(html_entity_decode($this->subject)) :
+            new static(html_entity_decode($this->subject, func_get_arg(0)));
     }
 
     /**
@@ -93,11 +94,11 @@ trait PHP
      *
      * @return static
      */
-    public function htmlentities($flags = null)
+    public function htmlentities()
     {
-        $flags = is_null($flags) === true ? ENT_COMPAT | ENT_HTML401 : $flags;
-
-        return new static(htmlentities($this->subject, $flags));
+        return func_num_args() === 0 ?
+            new static(htmlentities($this->subject)) :
+            new static(htmlentities($this->subject, func_get_arg(0)));
     }
 
     /**
@@ -107,11 +108,11 @@ trait PHP
      *
      * @return static
      */
-    public function htmlspecialcharsDecode($flags = null)
+    public function htmlspecialcharsDecode()
     {
-        $flags = is_null($flags) === true ? ENT_COMPAT | ENT_HTML401 : $flags;
-
-        return new static(htmlspecialchars_decode($this->subject), $flags);
+        return func_num_args() === 0 ?
+            new static(htmlspecialchars_decode($this->subject)) :
+            new static(htmlspecialchars_decode($this->subject, func_get_arg(0)));
     }
 
     /**
@@ -121,11 +122,11 @@ trait PHP
      *
      * @return static
      */
-    public function htmlspecialchars($flags = null)
+    public function htmlspecialchars()
     {
-        $flags = is_null($flags) === true ? ENT_COMPAT | ENT_HTML401 : $flags;
-
-        return new static(htmlspecialchars($this->subject, $flags));
+        return func_num_args() === 0 ?
+            new static(htmlspecialchars($this->subject)) :
+            new static(htmlspecialchars($this->subject, func_get_arg(0)));
     }
 
     /**
@@ -264,7 +265,9 @@ trait PHP
      */
     public function stripTags()
     {
-        return new static(call_user_func_array('strip_tags', array_merge([$this->subject], func_get_args())));
+        return func_num_args() === 0 ?
+            new static(strip_tags($this->subject)) :
+            new static(strip_tags($this->subject, func_get_arg(0)));
     }
 
     /**
