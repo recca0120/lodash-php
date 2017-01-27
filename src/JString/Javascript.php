@@ -145,14 +145,14 @@ trait Javascript
     public function lastIndexOf($searchValue, $fromIndex = null)
     {
         if (empty($searchValue) === true) {
-            return is_null($fromIndex) === true ? $this->length() : $fromIndex;
+            return $fromIndex ?: $this->length();
         }
 
         if ($fromIndex === 0 || $fromIndex < 0) {
             return strrpos($this->subject, $searchValue, $fromIndex) !== 0 ? -1 : 0;
         }
 
-        $fromIndex = is_null($fromIndex) === true ? 0 : $fromIndex;
+        $fromIndex = $fromIndex ?: 0;
         $result = strrpos($this->subject, $searchValue, $fromIndex);
 
         return $result === false ? -1 : $result;

@@ -84,7 +84,7 @@ trait Javascript
         }
 
         if (is_null($start) === true) {
-            $i = is_null($end) === true ? $length : $end;
+            $i = $end ?: $length;
 
             while ($i--) {
                 $array[$i] = $value;
@@ -95,7 +95,7 @@ trait Javascript
             $start = $length - $start;
         }
 
-        $end = is_null($end) === true ? $length : $end;
+        $end = $end ?: $length;
         $i = $start;
 
         while ($i !== $end) {

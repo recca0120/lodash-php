@@ -71,6 +71,6 @@ class Converter
 
     public static function instance()
     {
-        return is_null(static::$instance) === true ? new static() : static::$instance;
+        return static::$instance ?: new static();
     }
 }
