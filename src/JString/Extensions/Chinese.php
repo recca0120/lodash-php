@@ -37,7 +37,7 @@ class Chinese
     /**
      * toNumber.
      *
-     * @return string
+     * @return int
      */
     public function toNumber()
     {

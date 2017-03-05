@@ -40,6 +40,12 @@ trait PHP
         return new static(bin2hex($this->subject));
     }
 
+    /**
+     * convertEncoding.
+     *
+     * @param  string $toEncoding
+     * @return static
+     */
     public function convertEncoding($toEncoding)
     {
         return func_num_args() === 1 ?
@@ -47,11 +53,22 @@ trait PHP
             new static(mb_convert_encoding($this->subject, $toEncoding, func_get_arg(0)));
     }
 
+    /**
+     * convertTo.
+     *
+     * @param string $variant
+     * @return static
+     */
     public function convertTo($variant = 'zh-tw')
     {
         return new static(Converter::instance()->convertTo($this->subject, $variant));
     }
 
+    /**
+     * chineseToNumber.
+     *
+     * @return int
+     */
     public function chineseToNumber()
     {
         return (new Chinese($this->subject))->toNumber();
@@ -338,6 +355,6 @@ trait PHP
      */
     public function wordwrap($width = 75, $break = "\n", $cut = false)
     {
-        return new static(wordwrap($this->subject, $break, $cut));
+        return new static(wordwrap($this->subject, $width, $break, $cut));
     }
 }
