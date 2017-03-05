@@ -166,7 +166,7 @@ trait Javascript
     /**
      * The includes() method determines whether an array includes a certain element, returning true or false as appropriate.
      *
-     * @param  mix  $searchElement
+     * @param  mixed $searchElement
      * @param  int $fromIndex
      * @return bool
      */
