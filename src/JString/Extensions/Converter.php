@@ -45,7 +45,6 @@ class Converter
          * 'zh-tw' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2TW),
          * 'zh' => new ArrayObject([]),.
          */
-
         $path = __DIR__.'/../../../resources/Mediawiki/Languages/Data/';
 
         $this->table = [
