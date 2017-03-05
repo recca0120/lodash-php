@@ -1,9 +1,9 @@
 <?php
 
-namespace Recca0120\LoDash;
+namespace Recca0120\Lodash;
 
-use Recca0120\LoDash\JString\PHP;
-use Recca0120\LoDash\JString\Javascript;
+use Recca0120\Lodash\JString\PHP;
+use Recca0120\Lodash\JString\Javascript;
 
 class JString
 {

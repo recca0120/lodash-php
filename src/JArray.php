@@ -1,9 +1,9 @@
 <?php
 
-namespace Recca0120\LoDash;
+namespace Recca0120\Lodash;
 
 use ArrayObject;
-use Recca0120\LoDash\JArray\Javascript;
+use Recca0120\Lodash\JArray\Javascript;
 
 class JArray extends ArrayObject
 {

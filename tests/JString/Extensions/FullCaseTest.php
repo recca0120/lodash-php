@@ -1,7 +1,7 @@
 <?php
 
 use Mockery as m;
-use Recca0120\LoDash\JString\Extensions\FullCase;
+use Recca0120\Lodash\JString\Extensions\FullCase;
 
 class JStringFullCaseTest extends PHPUnit_Framework_TestCase
 {

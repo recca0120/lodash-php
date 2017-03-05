@@ -1,7 +1,7 @@
 <?php
 
 use Mockery as m;
-use Recca0120\LoDash\JString\Extensions\Chinese;
+use Recca0120\Lodash\JString\Extensions\Chinese;
 
 class JStringChineseTest extends PHPUnit_Framework_TestCase
 {

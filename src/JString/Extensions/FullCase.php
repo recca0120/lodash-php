@@ -1,6 +1,6 @@
 <?php
 
-namespace Recca0120\LoDash\JString\Extensions;
+namespace Recca0120\Lodash\JString\Extensions;
 
 class FullCase
 {

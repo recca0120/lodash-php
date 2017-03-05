@@ -1,7 +1,7 @@
 <?php
 
 use Mockery as m;
-use Recca0120\LoDash\JString\Extensions\Converter;
+use Recca0120\Lodash\JString\Extensions\Converter;
 
 class JStringConverterTest extends PHPUnit_Framework_TestCase
 {

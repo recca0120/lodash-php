@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Recca0120\\LoDash\\": "src"
+            "Recca0120\\Lodash\\": "src"
         }
     },
     "config": {

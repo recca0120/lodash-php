@@ -1,7 +1,7 @@
 <?php
 
 use Mockery as m;
-use Recca0120\LoDash\JArray;
+use Recca0120\Lodash\JArray;
 
 class JArrayJavascriptTest extends PHPUnit_Framework_TestCase
 {

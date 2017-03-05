@@ -1,8 +1,8 @@
 <?php
 
-namespace Recca0120\LoDash\JArray;
+namespace Recca0120\Lodash\JArray;
 
-use Recca0120\LoDash\JString;
+use Recca0120\Lodash\JString;
 
 trait Javascript
 {
@@ -200,7 +200,7 @@ trait Javascript
      * The join() method joins all elements of an array into a string.
      *
      * @param string $separator
-     * @return \Recca0120\LoDash\Str;
+     * @return \Recca0120\Lodash\JString
      */
     public function join($separator = ',')
     {

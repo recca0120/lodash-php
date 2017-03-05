@@ -1,7 +1,7 @@
 <?php
 
 use Mockery as m;
-use Recca0120\LoDash\JString;
+use Recca0120\Lodash\JString;
 
 class JStringPHPTest extends PHPUnit_Framework_TestCase
 {

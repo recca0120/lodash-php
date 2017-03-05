@@ -1,11 +1,11 @@
 <?php
 
-namespace Recca0120\LoDash\JString;
+namespace Recca0120\Lodash\JString;
 
-use Recca0120\LoDash\JArray;
-use Recca0120\LoDash\JString\Extensions\Chinese;
-use Recca0120\LoDash\JString\Extensions\FullCase;
-use Recca0120\LoDash\JString\Extensions\Converter;
+use Recca0120\Lodash\JArray;
+use Recca0120\Lodash\JString\Extensions\Chinese;
+use Recca0120\Lodash\JString\Extensions\FullCase;
+use Recca0120\Lodash\JString\Extensions\Converter;
 
 trait PHP
 {
@@ -62,7 +62,7 @@ trait PHP
      *
      * @param string $delimiter
      * @param int $limit
-     * @return \Recca0120\LoDash\JArray
+     * @return \Recca0120\Lodash\JArray
      */
     public function explode($delimiter)
     {
@@ -169,7 +169,7 @@ trait PHP
     /**
      * Parses the string into variables.
      *
-     * @return \Recca0120\LoDash\JArray
+     * @return \Recca0120\Lodash\JArray
      */
     public function parse()
     {
@@ -204,7 +204,7 @@ trait PHP
      * Parses input from a string according to a format.
      *
      * @param string $format
-     * @return \Recca0120\LoDash\JArray
+     * @return \Recca0120\Lodash\JArray
      */
     public function sscanf($format)
     {
@@ -248,7 +248,6 @@ trait PHP
      * Strip HTML and PHP tags from a string.
      *
      * @param string $allowable_tags
-     *
      * @return static
      */
     public function stripTags()
@@ -288,11 +287,21 @@ trait PHP
         return new static(strrev($this->subject));
     }
 
+    /**
+     * toFullCase.
+     *
+     * @return static
+     */
     public function toFullCase()
     {
         return new static((new FullCase($this->subject))->toFullCase());
     }
 
+    /**
+     * toHalfCase.
+     *
+     * @return static
+     */
     public function toHalfCase()
     {
         return new static((new FullCase($this->subject))->toHalfCase());
@@ -312,7 +321,6 @@ trait PHP
      * Uppercase the first character of each word in a string.
      *
      * @param string $delimiters
-     *
      * @return static
      */
     public function ucwords($delimiters = " \t\r\n\f\v")
@@ -326,7 +334,6 @@ trait PHP
      * @param int $width
      * @param string $break
      * @param bool $cut
-     *
      * @return static
      */
     public function wordwrap($width = 75, $break = "\n", $cut = false)

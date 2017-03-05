@@ -1,8 +1,8 @@
 <?php
 
-namespace Recca0120\LoDash\JString;
+namespace Recca0120\Lodash\JString;
 
-use Recca0120\LoDash\JArray;
+use Recca0120\Lodash\JArray;
 
 trait Javascript
 {
@@ -277,7 +277,7 @@ trait Javascript
      * The split() method splits a String object into an array of strings by separating the string into substrings.
      *
      * @param  string|null $separator
-     * @return Recca0120\LoDash\Arr
+     * @return Recca0120\Lodash\Arr
      */
     public function split($separator = null)
     {
