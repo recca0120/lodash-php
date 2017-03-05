@@ -31,7 +31,7 @@ trait Javascript
     /**
      * The charAt() method returns the specified character from a string.
      *
-     * @param  int $index
+     * @param int $index
      * @return static
      */
     public function charAt($index = 0)
@@ -46,7 +46,7 @@ trait Javascript
      * but might also be the first code unit of a surrogate pair for code points not representable in a single UTF-16 code unit,
      * e.g. Unicode code points > 0x10000). If you want the entire code point value, use codePointAt().
      *
-     * @param  int $index
+     * @param int $index
      * @return int
      */
     public function charCodeAt($index = 0)
@@ -57,7 +57,7 @@ trait Javascript
     /**
      * The codePointAt() method returns a non-negative int that is the Unicode code point value.
      *
-     * @param  int $index
+     * @param int $index
      * @return int
      */
     public function codePointAt($index = 0)
@@ -78,8 +78,8 @@ trait Javascript
      * The endsWith() method determines whether a string ends with the characters of another string,
      * returning true or false as appropriate.
      *
-     * @param  string $searchString
-     * @param  int $position
+     * @param string $searchString
+     * @param int $position
      * @return bool
      */
     public function endsWith($searchString, $position = null)
@@ -96,8 +96,8 @@ trait Javascript
      * The includes() method determines whether one string may be found within another string,
      * returning true or false as appropriate.
      *
-     * @param  string  $searchString
-     * @param  int $position
+     * @param string $searchString
+     * @param int $position
      * @return bool
      */
     public function includes($searchString, $position = 0)
@@ -113,8 +113,8 @@ trait Javascript
      * The indexOf() method returns the index within the calling String object of the first occurrence of the specified value,
      * starting the search at fromIndex. Returns -1 if the value is not found.
      *
-     * @param  string  $searchValue
-     * @param  int $fromIndex
+     * @param string $searchValue
+     * @param int $fromIndex
      * @return int
      */
     public function indexOf($searchValue, $fromIndex = 0)
@@ -132,8 +132,8 @@ trait Javascript
      * The lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value,
      * searching backwards from fromIndex. Returns -1 if the value is not found.
      *
-     * @param  string $searchValue
-     * @param  int $fromIndex
+     * @param string $searchValue
+     * @param int $fromIndex
      * @return int
      */
     public function lastIndexOf($searchValue, $fromIndex = null)
@@ -165,9 +165,9 @@ trait Javascript
     /**
      * The match() method retrieves the matches when matching a string against a regular expression.
      *
-     * @param  string  $regexp
-     * @param  int  $flag
-     * @param  int $offset
+     * @param string $regexp
+     * @param int $flag
+     * @param int $offset
      * @return array
      */
     public function match($regexp, $flag = PREG_PATTERN_ORDER, $offset = 0)
@@ -183,8 +183,8 @@ trait Javascript
      * The padEnd() method pads the current string with a given string (possibly repeated)
      * so that the resulting string reaches a given length. The padding is applied from the end (right) of the current string.
      *
-     * @param  int $targetLength
-     * @param  string $padString
+     * @param int $targetLength
+     * @param string $padString
      * @return static
      */
     public function padEnd($targetLength, $padString = ' ')
@@ -196,8 +196,8 @@ trait Javascript
      * The padStart() method pads the current string with a given string (eventually repeated)
      * so that the resulting string reaches a given length. The pad is applied from the start (left) of the current string.
      *
-     * @param  int $targetLength
-     * @param  string $padString
+     * @param int $targetLength
+     * @param string $padString
      * @return static
      */
     public function padStart($targetLength, $padString = ' ')
@@ -208,7 +208,7 @@ trait Javascript
     /**
      * The repeat() method constructs and returns a new string which contains the specified number of copies of the string on which it was called, concatenated together.
      *
-     * @param  int $count
+     * @param int $count
      * @return static
      */
     public function repeat($count)
@@ -219,8 +219,8 @@ trait Javascript
     /**
      * The replace() method returns a new string with some or all matches of a pattern replaced by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match.
      *
-     * @param  string $regexp
-     * @param  mix $replacement
+     * @param string $regexp
+     * @param mix $replacement
      * @return static
      */
     public function replace($regexp, $replacement = null)
@@ -239,7 +239,7 @@ trait Javascript
     /**
      * The search() method executes a search for a match between a regular expression and this String object.
      *
-     * @param  string $regexp
+     * @param string $regexp
      * @return int
      */
     public function search($regexp)
@@ -254,8 +254,8 @@ trait Javascript
     /**
      * The slice() method extracts a section of a string and returns a new string.
      *
-     * @param  int $startSlice
-     * @param  int $endSlice
+     * @param int $startSlice
+     * @param int $endSlice
      * @return static
      */
     public function slice($startSlice, $endSlice = null)
@@ -291,8 +291,8 @@ trait Javascript
     /**
      * The startsWith() method determines whether a string begins with the characters of another string, returning true or false as appropriate.
      *
-     * @param  string  $searchString
-     * @param  int $position
+     * @param string $searchString
+     * @param int $position
      * @return bool
      */
     public function startsWith($searchString, $position = 0)
@@ -316,8 +316,8 @@ trait Javascript
     /**
      * The substring() method returns a subset of a string between one index and another, or through the end of the string.
      *
-     * @param  int $indexStart
-     * @param  int $indexEnd
+     * @param int $indexStart
+     * @param int $indexEnd
      * @return static
      */
     public function substring($indexStart, $indexEnd = null)
@@ -385,7 +385,7 @@ trait Javascript
     /**
      * The trim() method removes whitespace from both ends of a string. Whitespace in this context is all the whitespace characters (space, tab, no-break space, etc.) and all the line terminator characters (LF, CR, etc.).
      *
-     * @param  string $characterMask
+     * @param string $characterMask
      * @return static
      */
     public function trim($characterMask = " \t\n\r\0\x0B")
@@ -396,7 +396,7 @@ trait Javascript
     /**
      * The trimLeft() method removes whitespace from the left end of a string.
      *
-     * @param  string $characterMask [description]
+     * @param string $characterMask
      * @return static
      */
     public function trimLeft($characterMask = " \t\n\r\0\x0B")
@@ -407,7 +407,7 @@ trait Javascript
     /**
      * The trimRight() method removes whitespace from the right end of a string.
      *
-     * @param  string $characterMask
+     * @param string $characterMask
      * @return static
      */
     public function trimRight($characterMask = " \t\n\r\0\x0B")

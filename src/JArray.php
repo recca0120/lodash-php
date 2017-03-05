@@ -21,7 +21,7 @@ class JArray extends ArrayObject
 
     /**
      * factory.
-     * @param  array $subject
+     * @param array $subject
      * @return static
      */
     public static function factory($subject = [])

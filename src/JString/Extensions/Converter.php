@@ -76,8 +76,8 @@ class Converter
     /**
      * convertTo.
      *
-     * @param  string $str
-     * @param  string $variant
+     * @param string $str
+     * @param string $variant
      * @return string
      */
     public function convertTo($str, $variant = 'zh-TW')

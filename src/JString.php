@@ -50,7 +50,7 @@ class JString
     /**
      * factory.
      *
-     * @param  string $subject
+     * @param string $subject
      * @return static
      */
     public static function factory($subject = '')

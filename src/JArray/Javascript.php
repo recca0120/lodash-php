@@ -26,9 +26,9 @@ trait Javascript
      * The copyWithin() method shallow copies part of an array to another location in the same array and returns it,
      * without modifying its size.
      *
-     * @param  int $target
-     * @param  int $start
-     * @param  int $end
+     * @param int $target
+     * @param int $start
+     * @param int $end
      * @return static
      */
     public function copyWithin($target, $start, $end)
@@ -48,7 +48,7 @@ trait Javascript
     /**
      * The every() method tests whether all elements in the array pass the test implemented by the provided function.
      *
-     * @param  callable $callback
+     * @param callable $callback
      * @return bool
      */
     public function every(callable $callback)
@@ -106,7 +106,7 @@ trait Javascript
     /**
      * The filter() method creates a new array with all elements that pass the test implemented by the provided function.
      *
-     * @param  callable $callback
+     * @param callable $callback
      * @return static
      */
     public function filter(callable $callback)
@@ -117,7 +117,7 @@ trait Javascript
     /**
      * The find() method returns a value of the first element in the array that satisfies the provided testing function. Otherwise undefined is returned.
      *
-     * @param  callable $callback
+     * @param callable $callback
      * @return mix
      */
     public function find(callable $callback)
@@ -134,7 +134,7 @@ trait Javascript
      * The findIndex() method returns an index of the first element in the array that satisfies the provided testing function.
      * Otherwise -1 is returned.
      *
-     * @param  callable $callback
+     * @param callable $callback
      * @return int|string
      */
     public function findIndex(callable $callback)
@@ -153,7 +153,7 @@ trait Javascript
      * The forEach() method executes a provided function once for each array element.
      * php < 7 not allow forEach.
      *
-     * @param  callable $callback
+     * @param callable $callback
      */
     public function each(callable $callback)
     {
@@ -166,8 +166,8 @@ trait Javascript
     /**
      * The includes() method determines whether an array includes a certain element, returning true or false as appropriate.
      *
-     * @param  mixed $searchElement
-     * @param  int $fromIndex
+     * @param mixed $searchElement
+     * @param int $fromIndex
      * @return bool
      */
     public function includes($searchElement, $fromIndex = 0)
@@ -178,8 +178,8 @@ trait Javascript
     /**
      * The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
      *
-     * @param  mix  $searchElement
-     * @param  int $fromIndex
+     * @param mix $searchElement
+     * @param int $fromIndex
      * @return int|string
      */
     public function indexOf($searchElement, $fromIndex = 0)
@@ -199,7 +199,7 @@ trait Javascript
     /**
      * The join() method joins all elements of an array into a string.
      *
-     * @param  string $separator [description]
+     * @param string $separator
      * @return \Recca0120\LoDash\Str;
      */
     public function join($separator = ',')
@@ -220,8 +220,8 @@ trait Javascript
     /**
      * The lastIndexOf() method returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.
      *
-     * @param  mix $searchElement
-     * @param  int $fromIndex
+     * @param mix $searchElement
+     * @param int $fromIndex
      * @return int|string
      */
     public function lastIndexOf($searchElement, $fromIndex = 0)
@@ -237,7 +237,7 @@ trait Javascript
     /**
      * The map() method creates a new array with the results of calling a provided function on every element in this array.
      *
-     * @param  callable $callback
+     * @param callable $callback
      * @return static
      */
     public function map(callable $callback)
@@ -278,8 +278,8 @@ trait Javascript
     /**
      * The reduce() method applies a function against an accumulator and each value of the array (from left-to-right) to reduce it to a single value.
      *
-     * @param  callable $callback
-     * @param  mix   $initialValue
+     * @param callable $callback
+     * @param mix $initialValue
      * @return mix
      */
     public function reduce(callable $callback, $initialValue = null)
@@ -290,8 +290,8 @@ trait Javascript
     /**
      * The reduceRight() method applies a function against an accumulator and each value of the array (from right-to-left) has to reduce it to a single value.
      *
-     * @param  callable $callback
-     * @param  mix $initialValue
+     * @param callable $callback
+     * @param mix $initialValue
      * @return mix
      */
     public function reduceRight(callable $callback, $initialValue = null)
@@ -302,7 +302,7 @@ trait Javascript
     /**
      * The reverse() method reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
      *
-     * @param  bool $preservekeys
+     * @param bool $preservekeys
      * @return static
      */
     public function reverse($preservekeys = false)
@@ -332,8 +332,8 @@ trait Javascript
      * The slice() method returns a shallow copy of a portion of an array
      * into a new array object selected from begin to end (end not included). The original array will not be modified.
      *
-     * @param  int $begin
-     * @param  int $end
+     * @param int $begin
+     * @param int $end
      * @return static
      */
     public function slice($begin, $end = null)
@@ -355,7 +355,7 @@ trait Javascript
     /**
      * The some() method tests whether some element in the array passes the test implemented by the provided function.
      *
-     * @param  callable $callback
+     * @param callable $callback
      * @return bool
      */
     public function some(callable $callback)
