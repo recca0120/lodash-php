@@ -25,6 +25,7 @@ trait Javascript
      */
     public static function fromCodePoint()
     {
+        return $this;
     }
 
     /**
