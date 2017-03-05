@@ -204,7 +204,7 @@ trait PHP
      * Parses input from a string according to a format.
      *
      * @param string $format
-     * @return static
+     * @return \Recca0120\LoDash\JArray
      */
     public function sscanf($format)
     {

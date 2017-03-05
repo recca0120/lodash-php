@@ -9,7 +9,7 @@ trait Javascript
     /**
      * The static String.fromCharCode() method returns a string created by using the specified sequence of Unicode values.
      *
-     * @return static
+     * @return JString
      */
     public static function fromCharCode()
     {
@@ -67,7 +67,7 @@ trait Javascript
     /**
      * The concat() method combines the text of one or more strings and returns a new string.
      *
-     * @return static
+     * @return JString
      */
     public function concat()
     {
