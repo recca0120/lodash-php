@@ -43,9 +43,8 @@ class Converter
          * 'zh-my' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2CN),
          * 'zh-sg' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2CN),
          * 'zh-tw' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2TW),
-         * 'zh' => new ArrayObject([]),
+         * 'zh' => new ArrayObject([]),.
          */
-
 
         $path = __DIR__.'/../../../resources/Mediawiki/Languages/Data/';
 
