@@ -13,7 +13,6 @@ class Converter
      */
     protected static $instance;
 
-
     /**
      * $table.
      *
