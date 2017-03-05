@@ -42,13 +42,13 @@ class Chinese
     public function toNumber()
     {
         $sum = 0;
-
+        $matches = [];
         if ((bool) preg_match_all('/(?P<number>[一二三四五六七八九]+)?(?P<unit>[萬千百十])?/u', $this->subject, $matches, PREG_SET_ORDER) === false) {
             return $sum;
         }
 
         $sum = 0;
-        foreach ($matches as $token) {
+        foreach ((array) $matches as $token) {
             $unit = empty($token['unit']) === false ? $token['unit'] : '個';
             $unit = static::$numberUnits[$unit];
             if (empty($token['number']) === true) {

@@ -13,6 +13,14 @@ class Converter
      */
     protected static $instance;
 
+
+    /**
+     * $table.
+     *
+     * @var array
+     */
+    protected $table = [];
+
     /**
      * $default.
      *
@@ -23,19 +31,21 @@ class Converter
     /**
      * __construct.
      */
-    private function __construct()
+    protected function __construct()
     {
-        // $this->table = [
-        //     'zh-hans' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2Hans),
-        //     'zh-hant' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2Hant),
-        //     'zh-cn' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2CN),
-        //     'zh-hk' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2HK),
-        //     'zh-mo' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2HK),
-        //     'zh-my' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2CN),
-        //     'zh-sg' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2CN),
-        //     'zh-tw' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2TW),
-        //     'zh' => new ArrayObject([]),
-        // ];
+
+        /**
+         * 'zh-hans' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2Hans),
+         * 'zh-hant' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2Hant),
+         * 'zh-cn' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2CN),
+         * 'zh-hk' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2HK),
+         * 'zh-mo' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2HK),
+         * 'zh-my' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2CN),
+         * 'zh-sg' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2CN),
+         * 'zh-tw' => new ArrayObject(\MediaWiki\Languages\Data\ZhConversion::$zh2TW),
+         * 'zh' => new ArrayObject([]),
+         */
+
 
         $path = __DIR__.'/../../../resources/Mediawiki/Languages/Data/';
 
