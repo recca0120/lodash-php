@@ -178,7 +178,7 @@ trait Javascript
     /**
      * The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
      *
-     * @param mix $searchElement
+     * @param mixed $searchElement
      * @param int $fromIndex
      * @return int|string
      */
@@ -220,7 +220,7 @@ trait Javascript
     /**
      * The lastIndexOf() method returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.
      *
-     * @param mix $searchElement
+     * @param mixed $searchElement
      * @param int $fromIndex
      * @return int|string
      */
@@ -279,8 +279,8 @@ trait Javascript
      * The reduce() method applies a function against an accumulator and each value of the array (from left-to-right) to reduce it to a single value.
      *
      * @param callable $callback
-     * @param mix $initialValue
-     * @return mix
+     * @param mixed $initialValue
+     * @return mixed
      */
     public function reduce(callable $callback, $initialValue = null)
     {
@@ -291,8 +291,8 @@ trait Javascript
      * The reduceRight() method applies a function against an accumulator and each value of the array (from right-to-left) has to reduce it to a single value.
      *
      * @param callable $callback
-     * @param mix $initialValue
-     * @return mix
+     * @param mixed $initialValue
+     * @return mixed
      */
     public function reduceRight(callable $callback, $initialValue = null)
     {
