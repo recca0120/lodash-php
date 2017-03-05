@@ -29,7 +29,6 @@ trait Javascript
      * @param  int $target
      * @param  int $start
      * @param  int $end
-     *
      * @return static
      */
     public function copyWithin($target, $start, $end)
@@ -50,7 +49,6 @@ trait Javascript
      * The every() method tests whether all elements in the array pass the test implemented by the provided function.
      *
      * @param  callable $callback
-     *
      * @return bool
      */
     public function every(callable $callback)
@@ -71,7 +69,6 @@ trait Javascript
      * @param  $value
      * @param  $start
      * @param  $end
-     *
      * @return static
      */
     public function fill($value, $start = null, $end = null)
@@ -110,8 +107,6 @@ trait Javascript
      * The filter() method creates a new array with all elements that pass the test implemented by the provided function.
      *
      * @param  callable $callback
-     * @param  int  $flag
-     *
      * @return static
      */
     public function filter(callable $callback)
@@ -123,7 +118,6 @@ trait Javascript
      * The find() method returns a value of the first element in the array that satisfies the provided testing function. Otherwise undefined is returned.
      *
      * @param  callable $callback
-     *
      * @return mix
      */
     public function find(callable $callback)
@@ -141,7 +135,6 @@ trait Javascript
      * Otherwise -1 is returned.
      *
      * @param  callable $callback
-     *
      * @return int|string
      */
     public function findIndex(callable $callback)
@@ -175,7 +168,6 @@ trait Javascript
      *
      * @param  mix  $searchElement
      * @param  int $fromIndex
-     *
      * @return bool
      */
     public function includes($searchElement, $fromIndex = 0)
@@ -188,7 +180,6 @@ trait Javascript
      *
      * @param  mix  $searchElement
      * @param  int $fromIndex
-     *
      * @return int|string
      */
     public function indexOf($searchElement, $fromIndex = 0)
@@ -209,7 +200,6 @@ trait Javascript
      * The join() method joins all elements of an array into a string.
      *
      * @param  string $separator [description]
-     *
      * @return \Recca0120\LoDash\Str;
      */
     public function join($separator = ',')
@@ -232,7 +222,6 @@ trait Javascript
      *
      * @param  mix $searchElement
      * @param  int $fromIndex
-     *
      * @return int|string
      */
     public function lastIndexOf($searchElement, $fromIndex = 0)
@@ -249,7 +238,6 @@ trait Javascript
      * The map() method creates a new array with the results of calling a provided function on every element in this array.
      *
      * @param  callable $callback
-     *
      * @return static
      */
     public function map(callable $callback)
@@ -292,7 +280,6 @@ trait Javascript
      *
      * @param  callable $callback
      * @param  mix   $initialValue
-     *
      * @return mix
      */
     public function reduce(callable $callback, $initialValue = null)
@@ -305,7 +292,6 @@ trait Javascript
      *
      * @param  callable $callback
      * @param  mix $initialValue
-     *
      * @return mix
      */
     public function reduceRight(callable $callback, $initialValue = null)
@@ -317,7 +303,6 @@ trait Javascript
      * The reverse() method reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
      *
      * @param  bool $preservekeys
-     *
      * @return static
      */
     public function reverse($preservekeys = false)
@@ -349,7 +334,6 @@ trait Javascript
      *
      * @param  int $begin
      * @param  int $end
-     *
      * @return static
      */
     public function slice($begin, $end = null)
@@ -372,7 +356,6 @@ trait Javascript
      * The some() method tests whether some element in the array passes the test implemented by the provided function.
      *
      * @param  callable $callback
-     *
      * @return bool
      */
     public function some(callable $callback)
@@ -391,7 +374,6 @@ trait Javascript
      * The sort() method sorts the elements of an array in place and returns the array. The sort is not necessarily stable. The default sort order is according to string Unicode code points.
      *
      * @param  callable|null $compareFunction
-     *
      * @return static
      */
     public function sort(callable $compareFunction = null)

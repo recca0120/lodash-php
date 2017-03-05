@@ -4,6 +4,11 @@ namespace Recca0120\LoDash\JString\Extensions;
 
 class FullCase
 {
+    /**
+     * $fullCaseMap.
+     *
+     * @var array
+     */
     public static $fullCaseMap = [
         '　' => ' ',
         '！' => '!',
@@ -102,18 +107,38 @@ class FullCase
         '～' => '~',
     ];
 
+    /**
+     * $subject.
+     *
+     * @var string
+     */
     public $subject;
 
+    /**
+     * __construct.
+     *
+     * @param string $subject
+     */
     public function __construct($subject)
     {
         $this->subject = $subject;
     }
 
+    /**
+     * toHalfCase.
+     *
+     * @return string
+     */
     public function toHalfCase()
     {
         return strtr($this->subject, static::$fullCaseMap);
     }
 
+    /**
+     * toFullCase.
+     *
+     * @return string
+     */
     public function toFullCase()
     {
         return strtr($this->subject, array_flip(static::$fullCaseMap));

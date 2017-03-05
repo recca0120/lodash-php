@@ -13,7 +13,6 @@ trait PHP
      * Quote string with slashes in a C style.
      *
      * @param  string $charlist
-     *
      * @return static
      */
     public function addcslashes($charlist)
@@ -63,7 +62,6 @@ trait PHP
      *
      * @param  string $delimiter
      * @param  int $limit
-     *
      * @return \Recca0120\LoDash\JArray
      */
     public function explode($delimiter)
@@ -77,7 +75,6 @@ trait PHP
      * Convert all HTML entities to their applicable characters.
      *
      * @param  int $flags
-     *
      * @return static
      */
     public function htmlEntityDecode()
@@ -91,7 +88,6 @@ trait PHP
      * Convert all applicable characters to HTML entities.
      *
      * @param  int $flags
-     *
      * @return static
      */
     public function htmlentities()
@@ -105,7 +101,6 @@ trait PHP
      * Convert special HTML entities back to characters.
      *
      * @param  int $flags
-     *
      * @return static
      */
     public function htmlspecialcharsDecode()
@@ -119,7 +114,6 @@ trait PHP
      * Convert special characters to HTML entities.
      *
      * @param  int $flags
-     *
      * @return static
      */
     public function htmlspecialchars()
@@ -143,7 +137,6 @@ trait PHP
      * Strip whitespace (or other characters) from the beginning of a string.
      *
      * @param  string $characterMask
-     *
      * @return static
      */
     public function ltrim($characterMask = " \t\n\r\0\x0B")
@@ -155,7 +148,6 @@ trait PHP
      * Calculate the md5 hash of a string.
      *
      * @param  bool $rawOutput
-     *
      * @return static
      */
     public function md5($rawOutput = false)
@@ -167,7 +159,6 @@ trait PHP
      * Inserts HTML line breaks before all newlines in a string.
      *
      * @param  bool $isXHTML
-     *
      * @return static
      */
     public function nl2br($isXHTML = true)
@@ -192,7 +183,6 @@ trait PHP
      * Strip whitespace (or other characters) from the end of a string.
      *
      * @param  string $characterMask
-     *
      * @return static
      */
     public function rtrim($characterMask = " \t\n\r\0\x0B")
@@ -214,7 +204,6 @@ trait PHP
      * Parses input from a string according to a format.
      *
      * @param  string $format
-     *
      * @return static
      */
     public function sscanf($format)
@@ -228,7 +217,6 @@ trait PHP
      * @param  int $length
      * @param  string  $chars
      * @param  int  $type
-     *
      * @return static
      */
     public function pad($length = 0, $chars = ' ', $type = STR_PAD_BOTH)

@@ -4,6 +4,11 @@ namespace Recca0120\LoDash\JString\Extensions;
 
 class Chinese
 {
+    /**
+     * $numberUnits.
+     *
+     * @var array
+     */
     public static $numberUnits = [
         '個' => 1,
         '十' => 10,
@@ -12,13 +17,28 @@ class Chinese
         '萬' => 10000,
     ];
 
+    /**
+     * $subject.
+     *
+     * @var string
+     */
     protected $subject;
 
+    /**
+     * __construct.
+     *
+     * @param string $subject
+     */
     public function __construct($subject)
     {
         $this->subject = $subject;
     }
 
+    /**
+     * toNumber.
+     *
+     * @return string
+     */
     public function toNumber()
     {
         $sum = 0;

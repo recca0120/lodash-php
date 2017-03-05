@@ -6,10 +6,23 @@ use ArrayObject;
 
 class Converter
 {
+    /**
+     * $instance.
+     *
+     * @var static
+     */
     protected static $instance;
 
+    /**
+     * $default.
+     *
+     * @var string
+     */
     protected $default = 'zh-tw';
 
+    /**
+     * __construct.
+     */
     private function __construct()
     {
         // $this->table = [
@@ -60,6 +73,13 @@ class Converter
         );
     }
 
+    /**
+     * convertTo.
+     *
+     * @param  string $str
+     * @param  string $variant
+     * @return string
+     */
     public function convertTo($str, $variant = 'zh-TW')
     {
         $variant = strtolower($variant);
@@ -69,6 +89,11 @@ class Converter
         return strtr($str, $data);
     }
 
+    /**
+     * instance.
+     *
+     * @return static
+     */
     public static function instance()
     {
         return static::$instance ?: new static();

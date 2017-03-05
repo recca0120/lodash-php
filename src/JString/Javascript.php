@@ -31,7 +31,6 @@ trait Javascript
      * The charAt() method returns the specified character from a string.
      *
      * @param  int $index
-     *
      * @return static
      */
     public function charAt($index = 0)
@@ -47,7 +46,6 @@ trait Javascript
      * e.g. Unicode code points > 0x10000). If you want the entire code point value, use codePointAt().
      *
      * @param  int $index
-     *
      * @return int
      */
     public function charCodeAt($index = 0)
@@ -59,7 +57,6 @@ trait Javascript
      * The codePointAt() method returns a non-negative int that is the Unicode code point value.
      *
      * @param  int $index
-     *
      * @return int
      */
     public function codePointAt($index = 0)
@@ -82,7 +79,6 @@ trait Javascript
      *
      * @param  string $searchString
      * @param  int $position
-     *
      * @return bool
      */
     public function endsWith($searchString, $position = null)
@@ -101,7 +97,6 @@ trait Javascript
      *
      * @param  string  $searchString
      * @param  int $position
-     *
      * @return bool
      */
     public function includes($searchString, $position = 0)
@@ -119,7 +114,6 @@ trait Javascript
      *
      * @param  string  $searchValue
      * @param  int $fromIndex
-     *
      * @return int
      */
     public function indexOf($searchValue, $fromIndex = 0)
@@ -139,7 +133,6 @@ trait Javascript
      *
      * @param  string $searchValue
      * @param  int $fromIndex
-     *
      * @return int
      */
     public function lastIndexOf($searchValue, $fromIndex = null)
@@ -174,7 +167,6 @@ trait Javascript
      * @param  string  $regexp
      * @param  int  $flag
      * @param  int $offset
-     *
      * @return array
      */
     public function match($regexp, $flag = PREG_PATTERN_ORDER, $offset = 0)
@@ -192,7 +184,6 @@ trait Javascript
      *
      * @param  int $targetLength
      * @param  string $padString
-     *
      * @return static
      */
     public function padEnd($targetLength, $padString = ' ')
@@ -206,7 +197,6 @@ trait Javascript
      *
      * @param  int $targetLength
      * @param  string $padString
-     *
      * @return static
      */
     public function padStart($targetLength, $padString = ' ')
@@ -218,7 +208,6 @@ trait Javascript
      * The repeat() method constructs and returns a new string which contains the specified number of copies of the string on which it was called, concatenated together.
      *
      * @param  int $count
-     *
      * @return static
      */
     public function repeat($count)
@@ -231,7 +220,6 @@ trait Javascript
      *
      * @param  string $regexp
      * @param  mix $replacement
-     *
      * @return static
      */
     public function replace($regexp, $replacement = null)
@@ -251,7 +239,6 @@ trait Javascript
      * The search() method executes a search for a match between a regular expression and this String object.
      *
      * @param  string $regexp
-     *
      * @return int
      */
     public function search($regexp)
@@ -268,7 +255,6 @@ trait Javascript
      *
      * @param  int $startSlice
      * @param  int $endSlice
-     *
      * @return static
      */
     public function slice($startSlice, $endSlice = null)
@@ -290,7 +276,6 @@ trait Javascript
      * The split() method splits a String object into an array of strings by separating the string into substrings.
      *
      * @param  string|null $separator
-     *
      * @return Recca0120\LoDash\Arr
      */
     public function split($separator = null)
@@ -307,7 +292,6 @@ trait Javascript
      *
      * @param  string  $searchString
      * @param  int $position
-     *
      * @return bool
      */
     public function startsWith($searchString, $position = 0)
@@ -333,7 +317,6 @@ trait Javascript
      *
      * @param  int $indexStart
      * @param  int $indexEnd
-     *
      * @return static
      */
     public function substring($indexStart, $indexEnd = null)
@@ -402,7 +385,6 @@ trait Javascript
      * The trim() method removes whitespace from both ends of a string. Whitespace in this context is all the whitespace characters (space, tab, no-break space, etc.) and all the line terminator characters (LF, CR, etc.).
      *
      * @param  string $characterMask
-     *
      * @return static
      */
     public function trim($characterMask = " \t\n\r\0\x0B")
@@ -414,7 +396,6 @@ trait Javascript
      * The trimLeft() method removes whitespace from the left end of a string.
      *
      * @param  string $characterMask [description]
-     *
      * @return static
      */
     public function trimLeft($characterMask = " \t\n\r\0\x0B")
@@ -426,7 +407,6 @@ trait Javascript
      * The trimRight() method removes whitespace from the right end of a string.
      *
      * @param  string $characterMask
-     *
      * @return static
      */
     public function trimRight($characterMask = " \t\n\r\0\x0B")
