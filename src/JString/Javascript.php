@@ -21,7 +21,7 @@ trait Javascript
     /**
      * The static String.fromCodePoint() method returns a string created by using the specified sequence of code points.
      *
-     * @return static
+     * @return $this
      */
     public static function fromCodePoint()
     {

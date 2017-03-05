@@ -374,7 +374,7 @@ trait Javascript
      * The sort() method sorts the elements of an array in place and returns the array. The sort is not necessarily stable. The default sort order is according to string Unicode code points.
      *
      * @param  callable|null $compareFunction
-     * @return static
+     * @return $this
      */
     public function sort(callable $compareFunction = null)
     {
@@ -393,7 +393,7 @@ trait Javascript
     /**
      * The splice() method changes the content of an array by removing existing elements and/or adding new elements.
      *
-     * @return static
+     * @return $this
      */
     public function splice()
     {
@@ -431,7 +431,7 @@ trait Javascript
     /**
      * The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.
      *
-     * @return static
+     * @return $this
      */
     public function unshift()
     {
