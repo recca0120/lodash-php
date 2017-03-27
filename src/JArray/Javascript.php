@@ -7,6 +7,16 @@ use Recca0120\Lodash\JString;
 trait Javascript
 {
     /**
+     * The toString() method returns a string representing the specified array and its elements.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->toString();
+    }
+
+    /**
      * The concat() method is used to merge two or more arrays.
      * This method does not change the existing arrays, but instead returns a new array.
      *
@@ -416,16 +426,6 @@ trait Javascript
     public function toString()
     {
         return (string) $this->join(',');
-    }
-
-    /**
-     * The toString() method returns a string representing the specified array and its elements.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->toString();
     }
 
     /**

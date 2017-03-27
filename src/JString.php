@@ -28,16 +28,6 @@ class JString
     }
 
     /**
-     * value.
-     *
-     * @return string
-     */
-    public function value()
-    {
-        return $this->subject;
-    }
-
-    /**
      * __toString.
      *
      * @return string
@@ -45,6 +35,16 @@ class JString
     public function __toString()
     {
         return $this->value();
+    }
+
+    /**
+     * value.
+     *
+     * @return string
+     */
+    public function value()
+    {
+        return $this->subject;
     }
 
     /**
