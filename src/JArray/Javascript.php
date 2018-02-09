@@ -107,7 +107,7 @@ trait Javascript
 
         while ($i !== $end) {
             $array[$i] = $value;
-            ++$i;
+            $i++;
         }
 
         return new static($array);
