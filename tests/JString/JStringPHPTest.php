@@ -3,7 +3,7 @@
 use Mockery as m;
 use Recca0120\Lodash\JString;
 use PHPUnit\Framework\TestCase;
-    
+
 class JStringPHPTest extends TestCase
 {
     public function tearDown()
