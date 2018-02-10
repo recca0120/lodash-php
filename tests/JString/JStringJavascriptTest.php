@@ -2,8 +2,9 @@
 
 use Mockery as m;
 use Recca0120\Lodash\JString;
+use PHPUnit\Framework\TestCase;
 
-class JStringJavascriptTest extends PHPUnit_Framework_TestCase
+class JStringJavascriptTest extends TestCase
 {
     public function tearDown()
     {
