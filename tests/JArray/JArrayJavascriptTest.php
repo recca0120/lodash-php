@@ -2,8 +2,9 @@
 
 use Mockery as m;
 use Recca0120\Lodash\JArray;
+use PHPUnit\Framework\TestCase;
 
-class JArrayJavascriptTest extends PHPUnit_Framework_TestCase
+class JArrayJavascriptTest extends TestCase
 {
     public function tearDown()
     {
