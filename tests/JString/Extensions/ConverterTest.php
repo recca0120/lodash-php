@@ -1,9 +1,10 @@
 <?php
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Recca0120\Lodash\JString\Extensions\Converter;
 
-class JStringConverterTest extends PHPUnit_Framework_TestCase
+class JStringConverterTest extends TestCase
 {
     public function tearDown()
     {
