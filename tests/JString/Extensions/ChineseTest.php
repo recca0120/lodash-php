@@ -1,9 +1,10 @@
 <?php
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Recca0120\Lodash\JString\Extensions\Chinese;
 
-class JStringChineseTest extends PHPUnit_Framework_TestCase
+class JStringChineseTest extends TestCase
 {
     public function tearDown()
     {
