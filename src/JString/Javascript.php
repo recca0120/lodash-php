@@ -3,6 +3,7 @@
 namespace Recca0120\Lodash\JString;
 
 use Recca0120\Lodash\JArray;
+use Recca0120\Lodash\JString;
 
 trait Javascript
 {
@@ -18,26 +19,15 @@ trait Javascript
         })->join('');
     }
 
-    /**
-     * The static String.fromCodePoint() method returns a string created by using the specified sequence of code points.
-     *
-     * @return $this
-     */
-    public static function fromCodePoint()
-    {
-        return $this;
-    }
-
-    /**
-     * The charAt() method returns the specified character from a string.
-     *
-     * @param int $index
-     * @return static
-     */
-    public function charAt($index = 0)
-    {
-        return ($this->length() > $index) ? $this->substr($index, 1) : '';
-    }
+    // /**
+    //  * The static String.fromCodePoint() method returns a string created by using the specified sequence of code points.
+    //  *
+    //  * @return $this
+    //  */
+    // public static function fromCodePoint()
+    // {
+    //     return $this;
+    // }
 
     /**
      * The charCodeAt() method returns an int between 0 and 65535
@@ -55,14 +45,48 @@ trait Javascript
     }
 
     /**
+     * The charAt() method returns the specified character from a string.
+     *
+     * @param int $index
+     * @return static
+     */
+    public function charAt($index = 0)
+    {
+        return ($this->length() > $index) ? $this->substr($index, 1) : '';
+    }
+
+    /**
+     * length.
+     *
+     * @return int
+     */
+    public function length()
+    {
+        return strlen($this->subject);
+    }
+
+    /**
+     * The substr() method returns the characters in a string beginning at the specified location through the specified number of characters.
+     *
+     * @return static
+     */
+    public function substr()
+    {
+        $result = call_user_func_array('substr', array_merge([$this->subject], func_get_args()));
+        $result = $result === false ? '' : $result;
+
+        return new static($result);
+    }
+
+    /**
      * The codePointAt() method returns a non-negative int that is the Unicode code point value.
      *
      * @param int $index
      * @return int
      */
-    public function codePointAt($index = 0)
-    {
-    }
+    // public function codePointAt($index = 0)
+    // {
+    // }
 
     /**
      * The concat() method combines the text of one or more strings and returns a new string.
@@ -90,6 +114,30 @@ trait Javascript
         $lastIndex = $this->lastIndexOf($searchString, $position);
 
         return $lastIndex !== -1 && $lastIndex === $position;
+    }
+
+    /**
+     * The lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value,
+     * searching backwards from fromIndex. Returns -1 if the value is not found.
+     *
+     * @param string $searchValue
+     * @param int $fromIndex
+     * @return int
+     */
+    public function lastIndexOf($searchValue, $fromIndex = null)
+    {
+        if (empty($searchValue) === true) {
+            return $fromIndex ?: $this->length();
+        }
+
+        if ($fromIndex === 0 || $fromIndex < 0) {
+            return strrpos($this->subject, $searchValue, $fromIndex) !== 0 ? -1 : 0;
+        }
+
+        $fromIndex = $fromIndex ?: 0;
+        $result = strrpos($this->subject, $searchValue, $fromIndex);
+
+        return $result === false ? -1 : $result;
     }
 
     /**
@@ -129,38 +177,14 @@ trait Javascript
     }
 
     /**
-     * The lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value,
-     * searching backwards from fromIndex. Returns -1 if the value is not found.
-     *
-     * @param string $searchValue
-     * @param int $fromIndex
-     * @return int
-     */
-    public function lastIndexOf($searchValue, $fromIndex = null)
-    {
-        if (empty($searchValue) === true) {
-            return $fromIndex ?: $this->length();
-        }
-
-        if ($fromIndex === 0 || $fromIndex < 0) {
-            return strrpos($this->subject, $searchValue, $fromIndex) !== 0 ? -1 : 0;
-        }
-
-        $fromIndex = $fromIndex ?: 0;
-        $result = strrpos($this->subject, $searchValue, $fromIndex);
-
-        return $result === false ? -1 : $result;
-    }
-
-    /**
      * The localeCompare() method returns a number indicating
      * whether a reference string comes before or after or is the same as the given string in sort order.
      *
      * @return int
      */
-    public function localeCompare()
-    {
-    }
+    // public function localeCompare()
+    // {
+    // }
 
     /**
      * The match() method retrieves the matches when matching a string against a regular expression.
@@ -168,15 +192,11 @@ trait Javascript
      * @param string $regexp
      * @param int $flag
      * @param int $offset
-     * @return array
+     * @return array|null
      */
     public function match($regexp, $flag = PREG_PATTERN_ORDER, $offset = 0)
     {
-        if ((bool) preg_match_all($regexp, $this->subject, $matches, $flag, $offset) === false) {
-            return;
-        }
-
-        return $matches;
+        return (bool) preg_match_all($regexp, $this->subject, $matches, $flag, $offset) === false ? null : $matches;
     }
 
     /**
@@ -213,7 +233,7 @@ trait Javascript
      */
     public function repeat($count)
     {
-        return new static(str_repeat($this->subject, $count));
+        return new static(str_repeat($this->subject, floor($count)));
     }
 
     /**
@@ -252,37 +272,15 @@ trait Javascript
     }
 
     /**
-     * The slice() method extracts a section of a string and returns a new string.
-     *
-     * @param int $startSlice
-     * @param int $endSlice
-     * @return static
-     */
-    public function slice($startSlice, $endSlice = null)
-    {
-        $length = $this->length();
-        $startSlice = $startSlice < 0 ? $length + $startSlice : $startSlice;
-
-        if (is_null($endSlice) === true) {
-            return $this->substr($startSlice, $length - $startSlice);
-        }
-
-        $endSlice = $endSlice < 0 ? $length + $endSlice : $endSlice;
-        $endSlice -= $startSlice;
-
-        return $this->substr($startSlice, $endSlice);
-    }
-
-    /**
      * The split() method splits a String object into an array of strings by separating the string into substrings.
      *
-     * @param  string|null $separator
-     * @return Recca0120\Lodash\Arr
+     * @param string|null $separator
+     * @return JArray
      */
     public function split($separator = null)
     {
         if (is_null($separator) === true) {
-            return [$this->subject];
+            return new JArray([$this->subject]);
         }
 
         return new JArray(explode($separator, $this->subject));
@@ -298,19 +296,6 @@ trait Javascript
     public function startsWith($searchString, $position = 0)
     {
         return $this->substr($position, strlen($searchString))->value() === $searchString;
-    }
-
-    /**
-     * The substr() method returns the characters in a string beginning at the specified location through the specified number of characters.
-     *
-     * @return static
-     */
-    public function substr()
-    {
-        $result = call_user_func_array('substr', array_merge([$this->subject], func_get_args()));
-        $result = $result === false ? '' : $result;
-
-        return new static($result);
     }
 
     /**
@@ -333,6 +318,28 @@ trait Javascript
     }
 
     /**
+     * The slice() method extracts a section of a string and returns a new string.
+     *
+     * @param int $startSlice
+     * @param int $endSlice
+     * @return static
+     */
+    public function slice($startSlice, $endSlice = null)
+    {
+        $length = $this->length();
+        $startSlice = $startSlice < 0 ? $length + $startSlice : $startSlice;
+
+        if (is_null($endSlice) === true) {
+            return $this->substr($startSlice, $length - $startSlice);
+        }
+
+        $endSlice = $endSlice < 0 ? $length + $endSlice : $endSlice;
+        $endSlice -= $startSlice;
+
+        return $this->substr($startSlice, $endSlice);
+    }
+
+    /**
      * The toLocaleLowerCase() method returns the calling string value converted to lower case, according to any locale-specific case mappings.
      *
      * @return static
@@ -340,16 +347,6 @@ trait Javascript
     public function toLocaleLowerCase()
     {
         return $this->toLowerCase();
-    }
-
-    /**
-     * The toLocaleUpperCase() method returns the calling string value converted to upper case, according to any locale-specific case mappings.
-     *
-     * @return static
-     */
-    public function toLocaleUpperCase()
-    {
-        return $this->toUpperCase();
     }
 
     /**
@@ -363,13 +360,13 @@ trait Javascript
     }
 
     /**
-     * The toString() method returns a string representing the specified object.
+     * The toLocaleUpperCase() method returns the calling string value converted to upper case, according to any locale-specific case mappings.
      *
-     * @return string
+     * @return static
      */
-    public function toString()
+    public function toLocaleUpperCase()
     {
-        return $this->subject;
+        return $this->toUpperCase();
     }
 
     /**
@@ -380,6 +377,16 @@ trait Javascript
     public function toUpperCase()
     {
         return new static(strtoupper($this->subject));
+    }
+
+    /**
+     * The toString() method returns a string representing the specified object.
+     *
+     * @return string
+     */
+    public function toString()
+    {
+        return $this->subject;
     }
 
     /**
@@ -423,15 +430,5 @@ trait Javascript
     public function valueOf()
     {
         return $this->subject;
-    }
-
-    /**
-     * length.
-     *
-     * @return int
-     */
-    public function length()
-    {
-        return strlen($this->subject);
     }
 }

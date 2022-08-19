@@ -1,7 +1,9 @@
 {
     "name": "recca0120/lodash",
     "description": "string",
-    "keywords": ["string"],
+    "keywords": [
+        "string"
+    ],
     "license": "MIT",
     "type": "library",
     "require": {
@@ -9,13 +11,18 @@
     },
     "require-dev": {
         "mockery/mockery": "~0.9.4|~1.0",
-        "phpunit/phpunit": "~4.8|~5.4|~6.1|~7.0",
-        "nesbot/carbon": "~1.20",
-        "mikey179/vfsStream": "^1.6"
+        "phpunit/phpunit": "~4.8|~5.4|~6.1|~7.0|~8.0|9.0",
+        "nesbot/carbon": "~1.20|~2.0",
+        "mikey179/vfsstream": "^1.6"
     },
     "autoload": {
         "psr-4": {
             "Recca0120\\Lodash\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Recca0120\\Lodash\\Tests\\": "tests"
         }
     },
     "config": {

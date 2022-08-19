@@ -1,16 +1,12 @@
 <?php
 
-use Mockery as m;
+namespace Recca0120\Lodash\Tests\JString\Extensions;
+
 use PHPUnit\Framework\TestCase;
 use Recca0120\Lodash\JString\Extensions\Chinese;
 
-class JStringChineseTest extends TestCase
+class ChineseTest extends TestCase
 {
-    public function tearDown()
-    {
-        m::close();
-    }
-
     public function test_9()
     {
         $this->assertSame(9, (new Chinese('九'))->toNumber());

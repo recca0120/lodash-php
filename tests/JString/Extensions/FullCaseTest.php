@@ -1,16 +1,12 @@
 <?php
 
-use Mockery as m;
+namespace Recca0120\Lodash\Tests\JString\Extensions;
+
 use PHPUnit\Framework\TestCase;
 use Recca0120\Lodash\JString\Extensions\FullCase;
 
-class JStringFullCaseTest extends TestCase
+class FullCaseTest extends TestCase
 {
-    public function tearDown()
-    {
-        m::close();
-    }
-
     public function test_full_case()
     {
         $map = FullCase::$fullCaseMap;

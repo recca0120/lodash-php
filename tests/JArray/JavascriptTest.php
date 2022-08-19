@@ -1,16 +1,13 @@
 <?php
 
-use Mockery as m;
-use Recca0120\Lodash\JArray;
+namespace Recca0120\Lodash\Tests\JArray;
+
 use PHPUnit\Framework\TestCase;
+use Recca0120\Lodash\JArray;
+use stdClass;
 
-class JArrayJavascriptTest extends TestCase
+class JavascriptTest extends TestCase
 {
-    public function tearDown()
-    {
-        m::close();
-    }
-
     public function test_concat()
     {
         $this->assertSame(['a', 'b', 'c', 'd', 'e', 'f'], (array) (new JArray(['a', 'b', 'c']))->concat(['d', 'e', 'f']));

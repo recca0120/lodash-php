@@ -1,16 +1,13 @@
 <?php
 
-use Mockery as m;
-use Recca0120\Lodash\JString;
+namespace Recca0120\Lodash\Tests\JString;
+
 use PHPUnit\Framework\TestCase;
+use Recca0120\Lodash\JString;
+use stdClass;
 
-class JStringJavascriptTest extends TestCase
+class JavascriptTest extends TestCase
 {
-    public function tearDown()
-    {
-        m::close();
-    }
-
     public function test_from_char_code()
     {
         $this->assertSame('ABC', (string) JString::fromCharCode(65, 66, 67));

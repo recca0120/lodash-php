@@ -10,16 +10,6 @@ class JArray extends ArrayObject
     use Javascript;
 
     /**
-     * value.
-     *
-     * @return array
-     */
-    public function value()
-    {
-        return $this->subject;
-    }
-
-    /**
      * factory.
      * @param array $subject
      * @return static
@@ -31,15 +21,21 @@ class JArray extends ArrayObject
 
     /**
      * supports.
-     * @param  static|array $object
+     * @param mixed $object
      * @return bool
      */
     public static function supports($object)
     {
-        if ($object instanceof static || is_array($object) === true) {
-            return true;
-        }
+        return $object instanceof static || is_array($object) === true;
+    }
 
-        return false;
+    /**
+     * value.
+     *
+     * @return array
+     */
+    public function value()
+    {
+        return $this->subject;
     }
 }

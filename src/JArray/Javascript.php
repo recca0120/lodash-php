@@ -17,6 +17,27 @@ trait Javascript
     }
 
     /**
+     * The toString() method returns a string representing the specified array and its elements.
+     *
+     * @return string
+     */
+    public function toString()
+    {
+        return (string) $this->join(',');
+    }
+
+    /**
+     * The join() method joins all elements of an array into a string.
+     *
+     * @param string $separator
+     * @return JString
+     */
+    public function join($separator = ',')
+    {
+        return new JString(implode($separator, $this->getArrayCopy()));
+    }
+
+    /**
      * The concat() method is used to merge two or more arrays.
      * This method does not change the existing arrays, but instead returns a new array.
      *
@@ -43,16 +64,6 @@ trait Javascript
      */
     public function copyWithin($target, $start, $end)
     {
-    }
-
-    /**
-     * The entries() method returns a new Array Iterator object that contains the key/value pairs for each index in the array.
-     *
-     * @return ArrayIterator
-     */
-    public function entries()
-    {
-        return $this->getIterator();
     }
 
     /**
@@ -111,6 +122,16 @@ trait Javascript
         }
 
         return new static($array);
+    }
+
+    /**
+     * length.
+     *
+     * @return int
+     */
+    public function length()
+    {
+        return $this->count();
     }
 
     /**
@@ -186,6 +207,30 @@ trait Javascript
     }
 
     /**
+     * The slice() method returns a shallow copy of a portion of an array
+     * into a new array object selected from begin to end (end not included). The original array will not be modified.
+     *
+     * @param int $begin
+     * @param int $end
+     * @return static
+     */
+    public function slice($begin, $end = null)
+    {
+        $array = $this->getArrayCopy();
+        $length = $this->length();
+        $begin = $begin < 0 ? $length + $begin : $begin;
+
+        if (is_null($end) === true) {
+            return new static(array_slice($array, $begin, $length - $begin));
+        }
+
+        $end = $end < 0 ? $length + $end : $end;
+        $end -= $begin;
+
+        return new static(array_slice($array, $begin, $end));
+    }
+
+    /**
      * The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
      *
      * @param mixed $searchElement
@@ -207,17 +252,6 @@ trait Javascript
     }
 
     /**
-     * The join() method joins all elements of an array into a string.
-     *
-     * @param string $separator
-     * @return \Recca0120\Lodash\JString
-     */
-    public function join($separator = ',')
-    {
-        return new JString(implode($separator, $this->getArrayCopy()));
-    }
-
-    /**
      * The keys() method returns a new Array Iterator that contains the keys for each index in the array.
      *
      * @return \ArrayIterator
@@ -225,6 +259,16 @@ trait Javascript
     public function keys()
     {
         return (new static(array_keys($this->getArrayCopy())))->entries();
+    }
+
+    /**
+     * The entries() method returns a new Array Iterator object that contains the key/value pairs for each index in the array.
+     *
+     * @return ArrayIterator
+     */
+    public function entries()
+    {
+        return $this->getIterator();
     }
 
     /**
@@ -286,18 +330,6 @@ trait Javascript
     }
 
     /**
-     * The reduce() method applies a function against an accumulator and each value of the array (from left-to-right) to reduce it to a single value.
-     *
-     * @param callable $callback
-     * @param mixed $initialValue
-     * @return mixed
-     */
-    public function reduce(callable $callback, $initialValue = null)
-    {
-        return array_reduce($this->getArrayCopy(), $callback, $initialValue);
-    }
-
-    /**
      * The reduceRight() method applies a function against an accumulator and each value of the array (from right-to-left) has to reduce it to a single value.
      *
      * @param callable $callback
@@ -307,6 +339,18 @@ trait Javascript
     public function reduceRight(callable $callback, $initialValue = null)
     {
         return $this->reverse(true)->reduce($callback, $initialValue);
+    }
+
+    /**
+     * The reduce() method applies a function against an accumulator and each value of the array (from left-to-right) to reduce it to a single value.
+     *
+     * @param callable $callback
+     * @param mixed $initialValue
+     * @return mixed
+     */
+    public function reduce(callable $callback, $initialValue = null)
+    {
+        return array_reduce($this->getArrayCopy(), $callback, $initialValue);
     }
 
     /**
@@ -339,30 +383,6 @@ trait Javascript
     }
 
     /**
-     * The slice() method returns a shallow copy of a portion of an array
-     * into a new array object selected from begin to end (end not included). The original array will not be modified.
-     *
-     * @param int $begin
-     * @param int $end
-     * @return static
-     */
-    public function slice($begin, $end = null)
-    {
-        $array = $this->getArrayCopy();
-        $length = $this->length();
-        $begin = $begin < 0 ? $length + $begin : $begin;
-
-        if (is_null($end) === true) {
-            return new static(array_slice($array, $begin, $length - $begin));
-        }
-
-        $end = $end < 0 ? $length + $end : $end;
-        $end -= $begin;
-
-        return new static(array_slice($array, $begin, $end));
-    }
-
-    /**
      * The some() method tests whether some element in the array passes the test implemented by the provided function.
      *
      * @param callable $callback
@@ -383,14 +403,14 @@ trait Javascript
     /**
      * The sort() method sorts the elements of an array in place and returns the array. The sort is not necessarily stable. The default sort order is according to string Unicode code points.
      *
-     * @param  callable|null $compareFunction
+     * @param callable|null $compareFunction
      * @return $this
      */
     public function sort(callable $compareFunction = null)
     {
         if (is_null($compareFunction) === true) {
             $compareFunction = function ($a, $b) {
-                return $a > $b;
+                return is_string($a) ? strlen($a) - strlen($b) : $a - $b;
             };
         }
         $array = $this->getArrayCopy();
@@ -419,16 +439,6 @@ trait Javascript
     }
 
     /**
-     * The toString() method returns a string representing the specified array and its elements.
-     *
-     * @return string
-     */
-    public function toString()
-    {
-        return (string) $this->join(',');
-    }
-
-    /**
      * The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.
      *
      * @return $this
@@ -450,15 +460,5 @@ trait Javascript
     public function values()
     {
         return (new static(array_values($this->getArrayCopy())))->entries();
-    }
-
-    /**
-     * length.
-     *
-     * @return int
-     */
-    public function length()
-    {
-        return $this->count();
     }
 }

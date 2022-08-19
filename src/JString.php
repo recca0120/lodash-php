@@ -2,8 +2,8 @@
 
 namespace Recca0120\Lodash;
 
-use Recca0120\Lodash\JString\PHP;
 use Recca0120\Lodash\JString\Javascript;
+use Recca0120\Lodash\JString\PHP;
 
 class JString
 {
@@ -24,7 +24,28 @@ class JString
      */
     public function __construct($subject = '')
     {
-        $this->subject = $subject;
+        $this->subject = $subject === null ? '' : $subject;
+    }
+
+    /**
+     * factory.
+     *
+     * @param string $subject
+     * @return static
+     */
+    public static function factory($subject = '')
+    {
+        return new static((string) $subject);
+    }
+
+    /**
+     * supports.
+     * @param mixed $object
+     * @return bool
+     */
+    public static function supports($object)
+    {
+        return $object instanceof static || is_string($object) === true;
     }
 
     /**
@@ -45,30 +66,5 @@ class JString
     public function value()
     {
         return $this->subject;
-    }
-
-    /**
-     * factory.
-     *
-     * @param string $subject
-     * @return static
-     */
-    public static function factory($subject = '')
-    {
-        return new static((string) $subject);
-    }
-
-    /**
-     * supports.
-     * @param  static|string $object
-     * @return bool
-     */
-    public static function supports($object)
-    {
-        if ($object instanceof static || is_string($object) === true) {
-            return true;
-        }
-
-        return false;
     }
 }

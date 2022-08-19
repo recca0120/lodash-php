@@ -1,16 +1,12 @@
 <?php
 
-use Mockery as m;
-use Recca0120\Lodash\JString;
+namespace Recca0120\Lodash\Tests\JString;
+
 use PHPUnit\Framework\TestCase;
+use Recca0120\Lodash\JString;
 
-class JStringPHPTest extends TestCase
+class PHPTest extends TestCase
 {
-    public function tearDown()
-    {
-        m::close();
-    }
-
     public function test_convert_encoding()
     {
         $this->assertSame(mb_convert_encoding('測', 'big5'), (string) (new JString('測'))->convertEncoding('big5'));
